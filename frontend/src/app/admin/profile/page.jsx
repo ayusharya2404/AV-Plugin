@@ -13,9 +13,9 @@ const Profile = () => {
   const admins = [
     {
       id: 1,
-      name: "Jane Doe",
+      name: "Ayush Arya",
       role: "Senior Administrator",
-      email: "jane.doe@example.com",
+      email: "ayusharya358@.com",
       avatar: "/api/placeholder/100/100",
       joinDate: "June 2023",
       lastActive: "2 hours ago",
@@ -27,7 +27,7 @@ const Profile = () => {
     },
     {
       id: 2,
-      name: "John Smith",
+      name: "Vishal Mishra",
       role: "System Administrator",
       email: "john.smith@example.com",
       avatar: "/api/placeholder/100/100",
@@ -218,10 +218,10 @@ const Profile = () => {
                   <User size={24} className="mb-2 text-indigo-400" />
                   <span className="text-white">Users</span>
                 </button>
-                <button className="flex flex-col items-center justify-center p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
+                {/* <button className="flex flex-col items-center justify-center p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
                   <Settings size={24} className="mb-2 text-green-400" />
                   <span className="text-white">Settings</span>
-                </button>
+                </button> */}
                 <button className="flex flex-col items-center justify-center p-4 bg-gray-800 rounded-lg hover:bg-gray-700 transition-colors">
                   <Bell size={24} className="mb-2 text-yellow-400" />
                   <span className="text-white">Alerts</span>

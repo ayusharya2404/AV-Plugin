@@ -15,6 +15,7 @@ const Profile = () => {
     joined: 'March 2021',
     bio: 'Full-stack developer specializing in React and Node.js with 8+ years of experience building scalable web applications.',
     skills: ['React', 'Node.js', 'TypeScript', 'Tailwind CSS', 'MongoDB', 'GraphQL', 'AWS'],
+    profileImage: '/api/placeholder/300/300',
     stats: [
       { label: 'Projects', value: 32 },
       { label: 'Followers', value: 2.4 },
@@ -32,7 +33,7 @@ const Profile = () => {
   };
 
   return (
-    <div className="bg-black min-h-screen text-gray-200 p-4 md:p-8">
+    <div className="bg-gray-700 min-h-screen text-gray-200 p-4 md:p-8">
       <div className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* Profile sidebar */}
@@ -41,7 +42,15 @@ const Profile = () => {
               <div className="flex flex-col items-center relative">
                 <div className="relative group cursor-pointer">
                   <div className="w-32 h-32 rounded-full bg-gray-700 flex items-center justify-center overflow-hidden">
-                    <UserCircle className="w-full h-full text-gray-500" />
+                    {userData.profileImage ? (
+                      <img 
+                        src={userData.profileImage} 
+                        alt="Profile" 
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      <UserCircle className="w-full h-full text-gray-500" />
+                    )}
                   </div>
                   <div className="absolute inset-0 bg-black bg-opacity-50 rounded-full opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
                     <Camera className="text-white" />
@@ -165,5 +174,4 @@ const Profile = () => {
   );
 };
 
-
-export default Profile
+export default Profile;
