@@ -51,24 +51,24 @@ const Profile = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-gray-900 text-white">
       {/* Top Navigation Bar */}
-      <nav className="bg-neutral-900 border-b border-neutral-800 px-4 py-3">
+      <nav className="bg-gray-800 border-b border-neutral-800 px-4 py-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <div className="text-xl font-bold text-white">AV Admin</div>
           </div>
           
           <div className="flex items-center space-x-4">
-            <button className="p-2 rounded-full hover:bg-neutral-800">
+            <button className="p-2 rounded-full hover:bg-gray-700">
               <Bell size={20} />
             </button>
-            <button className="p-2 rounded-full hover:bg-neutral-800">
+            <button className="p-2 rounded-full hover:bg-gray-700">
               <Mail size={20} />
             </button>
             <div className="relative">
               <button 
-                className="flex items-center space-x-2 p-1 rounded-full hover:bg-neutral-800"
+                className="flex items-center space-x-2 p-1 rounded-full hover:bg-gray-700"
                 onClick={() => setShowDropdown(!showDropdown)}
               >
                 <img 
@@ -80,9 +80,9 @@ const Profile = () => {
               </button>
               
               {showDropdown && (
-                <div className="absolute right-0 mt-2 w-48 bg-neutral-900 rounded-md shadow-lg py-1 z-10">
+                <div className="absolute right-0 mt-2 w-48 bg-gray-800 rounded-md shadow-lg py-1 z-10">
                   <button 
-                    className="block w-full text-left px-4 py-2 hover:bg-neutral-800"
+                    className="block w-full text-left px-4 py-2 hover:bg-gray-700"
                     onClick={() => {
                       setCurrentAdmin(currentAdmin === 0 ? 1 : 0);
                       setShowDropdown(false);
@@ -90,8 +90,8 @@ const Profile = () => {
                   >
                     Switch to {admins[currentAdmin === 0 ? 1 : 0].name}
                   </button>
-                  <a href="#settings" className="block px-4 py-2 hover:bg-neutral-800">Settings</a>
-                  <a href="#logout" className="block px-4 py-2 hover:bg-neutral-800">Logout</a>
+                  <a href="#settings" className="block px-4 py-2 hover:bg-gray-700">Settings</a>
+                  <a href="#logout" className="block px-4 py-2 hover:bg-gray-700">Logout</a>
                 </div>
               )}
             </div>
@@ -104,7 +104,7 @@ const Profile = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
           {/* Profile Card */}
-          <div className="bg-neutral-900 rounded-lg shadow-lg p-6 col-span-1">
+          <div className="bg-gray-800 rounded-lg shadow-lg p-6 col-span-1">
             <div className="flex flex-col items-center text-center">
               <img 
                 src={currentAdminData.avatar} 
@@ -115,7 +115,7 @@ const Profile = () => {
               <p className="text-indigo-400">{currentAdminData.role}</p>
               <p className="text-gray-400 mt-1">{currentAdminData.email}</p>
               
-              <div className="border-t border-neutral-800 w-full my-6 pt-6">
+              <div className="border-t border-gray-600 w-full my-6 pt-6">
                 <div className="grid grid-cols-3 gap-4 text-center">
                   <div>
                     <p className="text-xl font-bold text-white">{currentAdminData.stats.projects}</p>
@@ -133,11 +133,11 @@ const Profile = () => {
               </div>
               
               <div className="flex space-x-3 mt-4">
-                <button className="bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-md flex items-center">
+                <button className="bg-gray-900 hover:bg-gray-700 px-4 py-2 rounded-md flex items-center">
                   <User size={16} className="mr-2" />
                   Profile
                 </button>
-                <button className="bg-neutral-800 hover:bg-neutral-700 px-4 py-2 rounded-md flex items-center">
+                <button className="bg-gray-900 hover:bg-gray-700 px-4 py-2 rounded-md flex items-center">
                   <Settings size={16} className="mr-2" />
                   Settings
                 </button>
@@ -150,7 +150,7 @@ const Profile = () => {
             
             {/* Stats Cards */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-neutral-900 rounded-lg shadow p-4">
+              <div className="bg-gray-800 rounded-lg shadow p-4">
                 <div className="flex justify-between items-center">
                   <div>
                     <p className="text-gray-400">Member Since</p>
@@ -162,7 +162,7 @@ const Profile = () => {
                 </div>
               </div>
               
-              <div className="bg-neutral-900 rounded-lg shadow p-4">
+              <div className="bg-gray-800 rounded-lg shadow p-4">
                 <div className="flex justify-between items-center">
                   <div>
                     <p className="text-gray-400">Last Active</p>
@@ -174,7 +174,7 @@ const Profile = () => {
                 </div>
               </div>
               
-              <div className="bg-neutral-900 rounded-lg shadow p-4">
+              <div className="bg-gray-800 rounded-lg shadow p-4">
                 <div className="flex justify-between items-center">
                   <div>
                     <p className="text-gray-400">Completion Rate</p>
@@ -190,11 +190,11 @@ const Profile = () => {
             </div>
             
             {/* Recent Activity */}
-            <div className="bg-neutral-900 rounded-lg shadow p-6">
+            <div className="bg-gray-800 rounded-lg shadow p-6">
               <h3 className="text-lg font-bold mb-4 text-white">Recent Activity</h3>
               <ul className="space-y-4">
                 {recentActivity.map(activity => (
-                  <li key={activity.id} className="border-b border-neutral-800 pb-3 last:border-0">
+                  <li key={activity.id} className="border-b border-gray-600 pb-3 last:border-0">
                     <div className="flex justify-between">
                       <span className="text-white">{activity.action}</span>
                       <span className="text-gray-400 text-sm">{activity.time}</span>
@@ -209,18 +209,18 @@ const Profile = () => {
             </div>
             
             {/* Quick Access */}
-            <div className="bg-neutral-900 rounded-lg shadow p-6">
+            <div className="bg-gray-800 rounded-lg shadow p-6">
               <h3 className="text-lg font-bold mb-4 text-white">Quick Actions</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                <button className="flex flex-col items-center justify-center p-4 bg-neutral-800 rounded-lg hover:bg-neutral-700 transition-colors">
+              <div className="grid grid-cols-3 md:grid-cols-3 gap-4">
+                <button className="flex flex-col items-center justify-center p-4 bg-gray-900 rounded-lg hover:bg-gray-700 transition-colors">
                   <User size={24} className="mb-2 text-indigo-400" />
                   <span className="text-white">Users</span>
                 </button>
-                <button className="flex flex-col items-center justify-center p-4 bg-neutral-800 rounded-lg hover:bg-neutral-700 transition-colors">
+                <button className="flex flex-col items-center justify-center p-4 bg-gray-900 rounded-lg hover:bg-gray-700 transition-colors">
                   <Bell size={24} className="mb-2 text-yellow-400" />
                   <span className="text-white">Alerts</span>
                 </button>
-                <button className="flex flex-col items-center justify-center p-4 bg-neutral-800 rounded-lg hover:bg-neutral-700 transition-colors">
+                <button className="flex flex-col items-center justify-center p-4 bg-gray-900 rounded-lg hover:bg-gray-700 transition-colors">
                   <LogOut size={24} className="mb-2 text-red-400" />
                   <span className="text-white">Logout</span>
                 </button>

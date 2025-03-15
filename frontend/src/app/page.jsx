@@ -1,11 +1,12 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Code, Layout, Zap, Shield, Menu, X } from 'lucide-react';
+import { ArrowRight, Code, Layout, Zap, Shield, Menu, X, Check } from 'lucide-react';
 
 const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeFeature, setActiveFeature] = useState(0);
+  const [activePlan, setActivePlan] = useState('monthly');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,6 +54,40 @@ const Home = () => {
       description: "Full TypeScript support for better developer experience and fewer bugs."
     }
   ];
+
+  const pricingPlans = {
+    weekly: {
+      price: "$9.99",
+      period: "week",
+      features: [
+        "Access to all components",
+        "Basic email support",
+        "Community access",
+        "Weekly updates"
+      ]
+    },
+    monthly: {
+      price: "$19.99",
+      period: "month",
+      features: [
+        "Everything in Weekly",
+        "Priority email support",
+        "Premium components",
+        "Advanced tutorials"
+      ]
+    },
+    yearly: {
+      price: "$99.99",
+      period: "year",
+      features: [
+        "Everything in Monthly",
+        "24/7 phone support",
+        "Custom component requests",
+        "Team collaboration tools",
+        "Early access to new features"
+      ]
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-gray-300">
@@ -209,6 +244,96 @@ export default function Example() {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Pricing Section */}
+      <div id="pricing" className="py-16 bg-gray-900">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-base text-gray-400 font-semibold tracking-wide uppercase">Pricing</h2>
+            <p className="mt-2 text-3xl font-extrabold text-white sm:text-4xl">
+              Plans for every workflow
+            </p>
+            <p className="mt-4 max-w-2xl text-xl text-gray-400 mx-auto">
+              Choose the perfect plan for your needs
+            </p>
+          </div>
+
+          <div className="mt-8 flex justify-center">
+            <div className="bg-gray-800 p-1 rounded-lg flex">
+              <button
+                onClick={() => setActivePlan('weekly')}
+                className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
+                  activePlan === 'weekly' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                Weekly
+              </button>
+              <button
+                onClick={() => setActivePlan('monthly')}
+                className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
+                  activePlan === 'monthly' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                Monthly
+              </button>
+              <button
+                onClick={() => setActivePlan('yearly')}
+                className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
+                  activePlan === 'yearly' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:text-white'
+                }`}
+              >
+                Yearly
+              </button>
+            </div>
+          </div>
+
+          <div className="mt-12 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-8">
+            {Object.entries(pricingPlans).map(([key, plan]) => (
+              <div 
+                key={key}
+                className={`relative p-8 bg-gray-800 rounded-lg shadow-md transition-all duration-300 ${
+                  activePlan === key ? 'ring-2 ring-gray-400 transform scale-105' : 'hover:scale-105'
+                }`}
+              >
+                <div className="text-center">
+                  <h3 className="text-2xl font-medium text-white capitalize">{key}</h3>
+                  <p className="mt-4 flex items-baseline justify-center">
+                    <span className="text-5xl font-extrabold text-white">{plan.price}</span>
+                    <span className="ml-1 text-xl font-medium text-gray-400">/{plan.period}</span>
+                  </p>
+                  
+                  <ul className="mt-8 space-y-4">
+                    {plan.features.map((feature, index) => (
+                      <li key={index} className="flex items-start">
+                        <div className="flex-shrink-0">
+                          <Check className="h-5 w-5 text-green-400" />
+                        </div>
+                        <p className="ml-3 text-base text-gray-300">{feature}</p>
+                      </li>
+                    ))}
+                  </ul>
+                  
+                  <div className="mt-8">
+                    <button
+                      className={`w-full px-4 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-black ${
+                        activePlan === key ? 'bg-gray-300 hover:bg-white' : 'bg-gray-500 hover:bg-gray-400'
+                      } transition-colors duration-200`}
+                    >
+                      {activePlan === key ? 'Get Started' : 'Select Plan'}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div className="mt-12 text-center">
+            <p className="text-gray-400">
+              Need a custom plan? <a href="#" className="text-white underline">Contact us</a> for enterprise pricing.
+            </p>
           </div>
         </div>
       </div>
