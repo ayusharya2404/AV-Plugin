@@ -68,32 +68,7 @@ const About = () => {
     }
   ];
 
-  const admins = [
-    {
-      name: "Alex Turner",
-      role: "Lead Developer & Founder",
-      bio: "Full-stack developer with 8+ years of experience in UI frameworks. Created AV Plugin to solve common Tailwind CSS challenges.",
-      image: "/api/placeholder/150/150",
-      social: [
-        { platform: "GitHub", url: "https://github.com", icon: "github" },
-        { platform: "Twitter", url: "https://twitter.com", icon: "twitter" },
-        { platform: "LinkedIn", url: "https://linkedin.com", icon: "linkedin" },
-        { platform: "Instagram", url: "https://instagram.com", icon: "instagram" }
-      ]
-    },
-    {
-      name: "Maya Rodriguez",
-      role: "UX Designer & Co-Founder",
-      bio: "UX/UI specialist with a background in design systems. Focuses on making AV Plugin intuitive and accessible for developers of all skill levels.",
-      image: "/api/placeholder/150/150",
-      social: [
-        { platform: "GitHub", url: "https://github.com", icon: "github" },
-        { platform: "Twitter", url: "https://twitter.com", icon: "twitter" },
-        { platform: "LinkedIn", url: "https://linkedin.com", icon: "linkedin" },
-        { platform: "Instagram", url: "https://instagram.com", icon: "instagram" }
-      ]
-    }
-  ];
+  
 
   // Optimized text animation variants
   const letterAnimation = {
@@ -178,96 +153,131 @@ const About = () => {
       ))}
 
       {/* Page Title with Enhanced Animation */}
-      <motion.div
-        className="relative z-10 mb-8"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, type: "spring" }}
-      >
-        <motion.div className="overflow-hidden">
-          <AnimatedText 
-            text="About AV Plugin" 
-            className="text-5xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-gray-500 to-white block"
-          />
-        </motion.div>
-        <motion.div 
-          className="h-1 w-20 bg-gradient-to-r from-gray-400 to-gray-600 mx-auto mt-2 rounded-full"
-          initial={{ width: 0 }}
-          animate={{ width: 120 }}
-          transition={{ delay: 0.8, duration: 0.8 }}
-        />
-      </motion.div>
+    <motion.div 
+  className="relative z-10 mb-8"
+  initial={{ opacity: 0, scale: 0.8 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.8, type: "spring" }}
+>
+  <motion.div className="overflow-visible leading-[1.2]">
+    <AnimatedText 
+      text="About AV Plugin" 
+      className="text-5xl font-bold text-center bg-clip-text text-transparent bg-gradient-to-r from-gray-500 to-white block pb-2"
+    />
+  </motion.div>
+  <motion.div 
+    className="h-1 w-20 bg-gradient-to-r from-gray-400 to-gray-600 mx-auto mt-2 rounded-full"
+    initial={{ width: 0 }}
+    animate={{ width: 120 }}
+    transition={{ delay: 0.8, duration: 0.8 }}
+  />
+</motion.div>
 
-      <motion.p 
-        className="mt-6 text-gray-400 text-center max-w-2xl relative z-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 0.3 }}
-      >
-        <motion.span 
-          className="relative inline-block"
-          whileHover={{ color: "#a0a0a0" }}
-        >
-          AV Plugin is an all-in-one Tailwind CSS plugin designed to simplify frontend
-          development by combining multiple essential features into a single package.
-        </motion.span>
-      </motion.p>
+<motion.p 
+  className="mt-6 text-gray-400 text-center max-w-4xl px-8 relative z-10 leading-relaxed"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 1, delay: 0.3 }}
+>
+  <motion.span 
+    className="relative inline-block"
+    whileHover={{ color: "#b5b5b5" }} 
+  >
+    <span className="text-gray-200 font-semibold">AV Plugin</span> is an 
+    <span className="text-white font-medium"> all-in-one Tailwind CSS extension </span>  
+    designed to <span className="text-gray-300"> streamline frontend development </span>  
+     by integrating multiple <span className="text-gray-200">essential utilities</span> into a single package.  
+    It eliminates the need for <span className="text-gray-300"> managing multiple plugins separately</span>,  
+    making the development process <span className="text-gray-200">simpler, faster, and more efficient</span>.  
+    With a <span className="text-white font-medium">rich collection of prebuilt UI components</span>,  
+    <span className="text-gray-300"> dynamic animations</span>,  
+    <span className="text-gray-300"> extended form controls</span>, and  
+    <span className="text-gray-300"> utility classes</span>, AV Plugin empowers developers to  
+    <span className="text-white font-medium"> create visually stunning, fully responsive,  
+    and high-performance websites with ease.</span>  
+  </motion.span>
+</motion.p>
+
+<motion.p 
+  className="mt-4 text-gray-400 text-center max-w-4xl px-8 relative z-10 leading-relaxed"
+  initial={{ opacity: 0 }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 1, delay: 0.3 }}
+>
+  <motion.span 
+    className="relative inline-block"
+    whileHover={{ color: "#b5b5b5" }}
+  >
+    Built with <span className="text-gray-200">scalability and performance</span> in mind,  
+    AV Plugin ensures that every website remains  
+    <span className="text-gray-200"> lightweight, optimized, and easy to maintain</span>.  
+    Whether you're a <span className="text-gray-300">beginner exploring Tailwind CSS </span>  
+    or an <span className="text-white font-medium"> experienced developer </span>  
+    working on large-scale applications, this plugin provides a  
+    <span className="text-gray-200"> seamless workflow</span> that  
+    <span className="text-white font-medium"> enhances both productivity and design flexibility</span>.  
+    With <span className="text-gray-200">continuous updates and community-driven improvements</span>,  
+    AV Plugin is set to become a <span className="text-white font-medium">must-have tool </span>  
+    for anyone looking to <span className="text-gray-300">elevate their Tailwind CSS projects effortlessly.</span>  
+  </motion.span>
+</motion.p>
+
 
       {/* Interactive Mission & Vision - simplified animation */}
       <motion.section 
-        className="mt-16 max-w-4xl relative z-10"
-        variants={fadeIn}
-        initial="initial"
-        whileInView="animate"
-        viewport={{ once: true }}
-      >
-        <h2 className="text-3xl font-semibold text-center block mb-2">Our Mission & Vision</h2>
-        <motion.p 
-          className="mt-4 text-gray-400 text-center px-4"
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          viewport={{ once: true }}
-        >
-          Our mission is to enhance the Tailwind CSS development experience by
-          providing a single, easy-to-use plugin that improves efficiency and
-          performance while maintaining the flexibility developers love.
-        </motion.p>
-        <motion.div
-          className="w-full h-40 mt-8 relative"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          {/* Interactive Vision Timeline */}
-          <div className="absolute top-1/2 left-0 w-full h-1 bg-gray-800 transform -translate-y-1/2">
-            {[2023, 2024, 2025].map((year, index) => (
-              <motion.div
-                key={year}
-                className="absolute top-0 flex flex-col items-center cursor-pointer"
-                style={{ left: `${index * 50}%` }}
-                whileHover={{ scale: 1.2 }}
-              >
-                <motion.div 
-                  className="w-4 h-4 rounded-full bg-gray-500 mb-2"
-                  whileHover={{ backgroundColor: "#333333" }}
-                />
-                <p className="text-sm">{year}</p>
-                <motion.p
-                  className="text-xs text-gray-500 max-w-28 text-center mt-1"
-                  initial={{ opacity: 0 }}
-                  whileHover={{ opacity: 1 }}
-                >
-                  {year === 2023 ? "Initial release" : 
-                   year === 2024 ? "Enterprise adoption" : 
-                   "Ecosystem expansion"}
-                </motion.p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-      </motion.section>
+  className="mt-16 max-w-4xl relative z-10"
+  variants={fadeIn}
+  initial="initial"
+  whileInView="animate"
+  viewport={{ once: true }}
+>
+  <h2 className="text-3xl font-semibold text-center block mb-2">Our Mission & Vision</h2>
+
+  {/* Mission Paragraph */}
+  <motion.p 
+    className="mt-4 text-gray-400 text-center max-w-4xl px-8 leading-relaxed"
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.2, duration: 0.6 }}
+    viewport={{ once: true }}
+  >
+    <motion.span className="relative inline-block" whileHover={{ color: "#b5b5b5" }}>
+      At <span className="text-gray-200 font-semibold">AV Plugin</span>, our mission is to  
+      <span className="text-white font-medium"> redefine Tailwind CSS development </span>  
+      by offering a <span className="text-gray-300">unified, powerful, and easy-to-use solution</span>.  
+      We aim to <span className="text-gray-200">eliminate repetitive tasks</span>,  
+      <span className="text-gray-300"> boost productivity</span>, and  
+      <span className="text-gray-200"> empower developers</span> of all skill levels.  
+      Our goal is to provide a <span className="text-white font-medium"> seamless,  
+      performance-optimized experience</span> while maintaining the  
+      <span className="text-gray-300"> flexibility and creativity</span> that make Tailwind CSS so popular.  
+    </motion.span>
+  </motion.p>
+
+  {/* Vision Paragraph */}
+  <motion.p 
+    className="mt-4 text-gray-400 text-center max-w-4xl px-8 leading-relaxed"
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ delay: 0.3, duration: 0.6 }}
+    viewport={{ once: true }}
+  >
+    <motion.span className="relative inline-block" whileHover={{ color: "#b5b5b5" }}>
+      Our vision is to make AV Plugin the <span className="text-white font-medium"> go-to tool </span>  
+       for every developer, enabling them to create  
+      <span className="text-gray-200"> stunning, responsive, and high-performance </span>  
+      web applications effortlessly.  
+      We believe in a <span className="text-gray-300">community-driven</span> approach,  
+      where developers contribute to innovation and improvements.  
+      By continuously evolving, integrating <span className="text-gray-200">modern industry trends</span>,  
+      and expanding our feature set, we strive to bridge the gap between  
+      <span className="text-white font-medium"> design and development</span>,  
+      making UI/UX implementation smoother than ever before.  
+    </motion.span>
+  </motion.p>
+
+
+</motion.section>
 
       {/* Why Choose AV Plugin - Interactive Cards */}
       <motion.section 
@@ -339,80 +349,103 @@ module.exports = {
         </motion.div>
       </motion.section>
 
-      {/* Team/Admin Section - With fixed image handling */}
-      <motion.section 
-        className="mt-20 mb-16 w-full max-w-4xl relative z-10"
-        variants={fadeIn}
-        initial="initial"
-        whileInView="animate"
+         {/* Team/Admin Section - With fixed image handling */}
+         <motion.section 
+  className="mt-20 mb-16 w-full max-w-4xl relative z-10"
+  variants={fadeIn}
+  initial="initial"
+  whileInView="animate"
+  viewport={{ once: true }}
+>
+  <h2 className="text-3xl font-semibold text-center block mb-6">Meet the Team</h2>
+  <motion.p 
+    className="text-gray-400 text-center mx-auto max-w-2xl mb-10"
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ delay: 0.2 }}
+    viewport={{ once: true }}
+  >
+    AV Plugin was created by a small team passionate about improving developer experiences. 
+    Our founders continue to guide the project with community input.
+  </motion.p>
+  
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    {[
+      {
+        name: "Ayush Arya",
+        role: "Lead Developer",
+        bio: "Experienced full-stack developer with a deep understanding of Tailwind CSS and frontend optimization.",
+        image: "/images/ayush.jpg",
+        social: [
+          { platform: "GitHub", url: "https://github.com/ayush" },
+          { platform: "Twitter", url: "https://twitter.com/ayush" },
+          { platform: "LinkedIn", url: "https://linkedin.com/in/ayush" },
+          { platform: "Instagram", url: "https://instagram.com/ayush" }
+        ]
+      },
+      {
+        name: "Vishal Mishra",
+        role: "UX Designer ",
+        bio: "Passionate about creating intuitive UI/UX designs and enhancing user experiences in web applications.",
+        image: "/images/vishal.jpg",
+        social: [
+          { platform: "GitHub", url: "https://github.com/vishal" },
+          { platform: "Twitter", url: "https://twitter.com/vishal" },
+          { platform: "LinkedIn", url: "https://linkedin.com/in/vishal" },
+          { platform: "Instagram", url: "https://instagram.com/vishal" }
+        ]
+      }
+    ].map((teamMember, index) => (
+      <motion.div
+        key={index}
+        className="bg-gray-900/60 rounded-xl p-6 border border-gray-800"
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ delay: index * 0.2, duration: 0.6 }}
         viewport={{ once: true }}
+        whileHover={{ scale: 1.02 }}
       >
-        <h2 className="text-3xl font-semibold text-center block mb-6">Meet the Team</h2>
-        <motion.p 
-          className="text-gray-400 text-center mx-auto max-w-2xl mb-10"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          AV Plugin was created by a small team passionate about improving developer experiences. 
-          Our founders continue to guide the project with community input.
-        </motion.p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {admins.map((admin, index) => (
-            <motion.div
-              key={index}
-              className="bg-gray-900/60 rounded-xl p-6 border border-gray-800"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2, duration: 0.6 }}
-              viewport={{ once: true }}
-              whileHover={{ scale: 1.02 }}
-              onHoverStart={() => setHoveredAdmin(index)}
-              onHoverEnd={() => setHoveredAdmin(null)}
-            >
-              <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-                <div className="relative w-24 h-24 rounded-full overflow-hidden">
-                  <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gray-600 to-gray-800 opacity-70" />
-                  {/* Properly handle image loading */}
-                  <div className="w-full h-full object-cover rounded-full p-1 relative z-10 bg-black">
-                    <img 
-                      src={admin.image}
-                      alt={admin.name}
-                      className="w-full h-full object-cover rounded-full"
-                      onError={(e) => {
-                        e.target.onerror = null;
-                        e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Crect width='150' height='150' fill='%23333'/%3E%3Ctext x='75' y='75' font-family='Arial' font-size='30' fill='%23FFF' text-anchor='middle' dominant-baseline='middle'%3E" + admin.name.charAt(0) + "%3C/text%3E%3C/svg%3E";
-                      }}
-                    />
-                  </div>
-                </div>
-                
-                <div className="flex-1 text-center sm:text-left">
-                  <h3 className="text-xl font-semibold text-gray-200 mb-1">{admin.name}</h3>
-                  <p className="text-gray-400 mb-3">{admin.role}</p>
-                  <p className="text-gray-500 text-sm mb-4">{admin.bio}</p>
-                  
-                  <div className="flex justify-center sm:justify-start gap-4 mt-auto">
-                    {admin.social.map((platform, i) => (
-                      <motion.a
-                        key={i}
-                        href={platform.url}
-                        className="text-gray-500 hover:text-gray-300"
-                        whileHover={{ scale: 1.2 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <SocialIcon platform={platform.platform} />
-                      </motion.a>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+        <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
+          <div className="relative w-24 h-24 rounded-full overflow-hidden">
+            <div className="absolute inset-0 rounded-full bg-gradient-to-br from-gray-600 to-gray-800 opacity-70" />
+            <div className="w-full h-full object-cover rounded-full p-1 relative z-10 bg-black">
+              <img 
+                src={teamMember.image}
+                alt={teamMember.name}
+                className="w-full h-full object-cover rounded-full"
+                onError={(e) => {
+                  e.target.onerror = null;
+                  e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='150' height='150' viewBox='0 0 150 150'%3E%3Crect width='150' height='150' fill='%23333'/%3E%3Ctext x='75' y='75' font-family='Arial' font-size='30' fill='%23FFF' text-anchor='middle' dominant-baseline='middle'%3E" + teamMember.name.charAt(0) + "%3C/text%3E%3C/svg%3E";
+                }}
+              />
+            </div>
+          </div>
+          
+          <div className="flex-1 text-center sm:text-left">
+            <h3 className="text-xl font-semibold text-gray-200 mb-1">{teamMember.name}</h3>
+            <p className="text-gray-400 mb-3">{teamMember.role}</p>
+            <p className="text-gray-500 text-sm mb-4">{teamMember.bio}</p>
+            
+            <div className="flex justify-center sm:justify-start gap-4 mt-auto">
+              {teamMember.social.map((platform, i) => (
+                <motion.a
+                  key={i}
+                  href={platform.url}
+                  className="text-gray-500 hover:text-gray-300"
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <SocialIcon platform={platform.platform} />
+                </motion.a>
+              ))}
+            </div>
+          </div>
         </div>
-      </motion.section>
+      </motion.div>
+    ))}
+  </div>
+</motion.section>
+
 
       {/* Enhanced Call to Action */}
       <motion.section 
