@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { ArrowRight, Code, Layout, Zap, Shield, Menu, X, Check } from 'lucide-react';
+import { motion } from "framer-motion";
 
 const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -90,7 +91,8 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-gray-300">
+   
+   <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-gray-300">
       {/* Navbar */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-black/80 backdrop-blur-md shadow-md' : 'bg-transparent'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -133,40 +135,86 @@ const Home = () => {
           </div>
         </div>
       </nav>
+      
+{/* Hero Section */}
+<div className="relative pt-16">
+  <div className="absolute inset-x-0 top-0 h-96 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 opacity-20 transform -skew-y-6"></div>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-24 sm:pt-32 sm:pb-40 relative text-center">
 
-      {/* Hero Section */}
-      <div className="relative pt-16">
-        <div className="absolute inset-x-0 top-0 h-96 bg-gradient-to-r from-gray-800 via-gray-700 to-gray-800 opacity-20 transform -skew-y-6"></div>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-24 sm:pt-32 sm:pb-40 relative">
-          <div className="sm:text-center">
-            <h1 className="text-4xl tracking-tight font-extrabold text-white sm:text-5xl md:text-6xl">
-              <span className="block">Supercharge your</span>
-              <span className="block text-gray-400">Tailwind Projects</span>
-            </h1>
-            <p className="mt-3 text-base text-gray-400 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl">
-              AV Plugin brings powerful components and utilities to enhance your Tailwind CSS workflow, helping you build beautiful interfaces faster than ever.
-            </p>
-            <div className="mt-8 sm:flex sm:justify-center">
-              <div className="rounded-md shadow">
-                <a
-                  href="#"
-                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-black bg-gray-300 hover:bg-white md:py-4 md:text-lg md:px-10 transition-all duration-200 transform hover:scale-105"
-                >
-                  Get Started
-                </a>
-              </div>
-              <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
-                <a
-                  href="#"
-                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 md:py-4 md:text-lg md:px-10 transition-all duration-200"
-                >
-                  Read Docs
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+    {/* Animated Heading */}
+    <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-wide inline-flex justify-center">
+      <motion.span
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="inline-block mx-2"
+      >
+        Supercharge  
+      </motion.span>
+      <motion.span
+        initial={{ opacity: 0, x: 50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+        className="inline-block mx-2"
+      >
+        your  
+      </motion.span>
+      <motion.span
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+        className="inline-block text-gray-400 mx-2"
+      >
+        Tailwind  
+      </motion.span>
+      <motion.span
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+        className="inline-block text-gray-400 mx-2"
+      >
+        Projects
+      </motion.span>
+    </h1>
+
+    {/* Increased Spacing for Subtitle */}
+    <motion.p 
+      className="mt-8 text-lg sm:text-xl text-gray-400 max-w-2xl mx-auto"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.4 }}
+    >
+      AV Plugin brings powerful components and utilities to enhance your Tailwind CSS workflow, helping you build beautiful interfaces faster than ever.
+    </motion.p>
+
+    {/* Buttons */}
+    <motion.div 
+      className="mt-8 flex flex-col sm:flex-row sm:justify-center gap-4"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1, delay: 0.6 }}
+    >
+      <motion.a
+        href="#"
+        className="px-8 py-3 border border-transparent text-lg font-medium rounded-md text-black bg-gray-300 hover:bg-white md:py-4 md:px-10 transition-all duration-200 transform hover:scale-105"
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        Get Started
+      </motion.a>
+      <motion.a
+        href="#"
+        className="px-8 py-3 border border-transparent text-lg font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 md:py-4 md:px-10 transition-all duration-200"
+        whileHover={{ scale: 1.08 }}
+        whileTap={{ scale: 0.95 }}
+      >
+        Read Docs
+      </motion.a>
+    </motion.div>
+
+  </div>
+</div>
+
 
       {/* Code Preview Section */}
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 const ContactUs = () => {
   return (
-    <div className="bg-black text-white min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
+    <div className="bg-black text-white min-h-screen flex items-center justify-center p-4 pt-20 relative overflow-hidden">
       {/* Background Animation */}
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 to-black opacity-70 animate-pulse" />
       <div className="absolute top-0 left-0 w-96 h-96 bg-gray-700 rounded-full opacity-20 filter blur-3xl animate-bounce" />
