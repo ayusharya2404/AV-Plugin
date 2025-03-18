@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Code, Layout, Zap, Shield, Menu, X, Check } from 'lucide-react';
-import { motion } from "framer-motion";
 
 const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -91,7 +91,7 @@ const Home = () => {
   };
 
   return (
-   
+    
    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-gray-300">
       {/* Navbar */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-black/80 backdrop-blur-md shadow-md' : 'bg-transparent'}`}>
@@ -106,7 +106,7 @@ const Home = () => {
             <div className="hidden md:block">
               <div className="ml-10 flex items-center space-x-4">
                 <a href="#features" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Features</a>
-                <a href="#pricing" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Pricing</a>
+                <a href="#pricing" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Installation</a>
                 <a href="#about" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">About</a>
                 <button className="bg-gray-800 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors duration-200">Login</button>
                 <button className="bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-500 transition-colors duration-200">Sign Up</button>
@@ -296,96 +296,6 @@ export default function Example() {
         </div>
       </div>
 
-      {/* Pricing Section */}
-      <div id="pricing" className="py-16 bg-gray-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-base text-gray-400 font-semibold tracking-wide uppercase">Pricing</h2>
-            <p className="mt-2 text-3xl font-extrabold text-white sm:text-4xl">
-              Plans for every workflow
-            </p>
-            <p className="mt-4 max-w-2xl text-xl text-gray-400 mx-auto">
-              Choose the perfect plan for your needs
-            </p>
-          </div>
-
-          <div className="mt-8 flex justify-center">
-            <div className="bg-gray-800 p-1 rounded-lg flex">
-              <button
-                onClick={() => setActivePlan('weekly')}
-                className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
-                  activePlan === 'weekly' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:text-white'
-                }`}
-              >
-                Weekly
-              </button>
-              <button
-                onClick={() => setActivePlan('monthly')}
-                className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
-                  activePlan === 'monthly' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:text-white'
-                }`}
-              >
-                Monthly
-              </button>
-              <button
-                onClick={() => setActivePlan('yearly')}
-                className={`px-4 py-2 text-sm font-medium rounded-md transition-colors duration-200 ${
-                  activePlan === 'yearly' ? 'bg-gray-700 text-white' : 'text-gray-400 hover:text-white'
-                }`}
-              >
-                Yearly
-              </button>
-            </div>
-          </div>
-
-          <div className="mt-12 space-y-12 lg:space-y-0 lg:grid lg:grid-cols-3 lg:gap-8">
-            {Object.entries(pricingPlans).map(([key, plan]) => (
-              <div 
-                key={key}
-                className={`relative p-8 bg-gray-800 rounded-lg shadow-md transition-all duration-300 ${
-                  activePlan === key ? 'ring-2 ring-gray-400 transform scale-105' : 'hover:scale-105'
-                }`}
-              >
-                <div className="text-center">
-                  <h3 className="text-2xl font-medium text-white capitalize">{key}</h3>
-                  <p className="mt-4 flex items-baseline justify-center">
-                    <span className="text-5xl font-extrabold text-white">{plan.price}</span>
-                    <span className="ml-1 text-xl font-medium text-gray-400">/{plan.period}</span>
-                  </p>
-                  
-                  <ul className="mt-8 space-y-4">
-                    {plan.features.map((feature, index) => (
-                      <li key={index} className="flex items-start">
-                        <div className="flex-shrink-0">
-                          <Check className="h-5 w-5 text-green-400" />
-                        </div>
-                        <p className="ml-3 text-base text-gray-300">{feature}</p>
-                      </li>
-                    ))}
-                  </ul>
-                  
-                  <div className="mt-8">
-                    <button
-                      className={`w-full px-4 py-3 border border-transparent rounded-md shadow-sm text-base font-medium text-black ${
-                        activePlan === key ? 'bg-gray-300 hover:bg-white' : 'bg-gray-500 hover:bg-gray-400'
-                      } transition-colors duration-200`}
-                    >
-                      {activePlan === key ? 'Get Started' : 'Select Plan'}
-                    </button>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-          
-          <div className="mt-12 text-center">
-            <p className="text-gray-400">
-              Need a custom plan? <a href="#" className="text-white underline">Contact us</a> for enterprise pricing.
-            </p>
-          </div>
-        </div>
-      </div>
-
       {/* CTA Section */}
       <div className="bg-gray-800">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8 lg:flex lg:items-center lg:justify-between">
@@ -415,37 +325,302 @@ export default function Example() {
       </div>
 
       {/* Testimonial Section */}
-      <div className="py-16 bg-gray-900 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h2 className="text-base text-gray-400 font-semibold tracking-wide uppercase">Testimonials</h2>
-            <p className="mt-2 text-3xl font-extrabold text-white sm:text-4xl">
-              Loved by developers
-            </p>
-          </div>
-          <div className="mt-16">
-            <div className="max-w-3xl mx-auto text-center">
-              <div className="relative">
-                <svg className="absolute top-0 left-0 transform -translate-x-8 -translate-y-8 h-16 w-16 text-gray-700" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
-                  <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
-                </svg>
-                <p className="relative text-lg sm:text-xl font-medium text-gray-300">
-                  AV Plugin has completely transformed our development workflow. We're building complex UIs in half the time with better results. It's become an essential tool for our entire team.
-                </p>
-              </div>
-              <div className="mt-6">
-                <div className="flex items-center justify-center space-x-3">
-                  <div className="flex-shrink-0 h-10 w-10 rounded-full bg-gray-700 flex items-center justify-center text-white font-bold">JD</div>
-                  <div className="text-left">
-                    <div className="text-white font-medium">Jane Doe</div>
-                    <div className="text-gray-400 text-sm">Lead Developer, TechCorp</div>
+<div className="py-16 bg-gray-900 overflow-hidden">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="text-center">
+      <h2 className="text-base text-gray-400 font-semibold tracking-wide uppercase">Testimonials</h2>
+      <p className="mt-2 text-3xl font-extrabold text-white sm:text-4xl">
+        Loved by developers
+      </p>
+    </div>
+    
+    {/* Interactive Testimonial Carousel */}
+    <div className="mt-16">
+      <motion.div 
+        className="relative max-w-3xl mx-auto"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8 }}
+      >
+        {/* Testimonials Data */}
+        {(() => {
+          const testimonials = [
+            {
+              id: 0,
+              initials: "JD",
+              name: "Jane Doe",
+              role: "Lead Developer, TechCorp",
+              text: "AV Plugin has completely transformed our development workflow. We're building complex UIs in half the time with better results. It's become an essential tool for our entire team."
+            },
+            {
+              id: 1,
+              initials: "MS",
+              name: "Mike Smith",
+              role: "Frontend Developer, StartupX",
+              text: "The component library is incredible. I used to spend hours building custom components, now I can prototype entire interfaces in minutes. The documentation is also top-notch!"
+            },
+            {
+              id: 2,
+              initials: "AL",
+              name: "Alex Lee",
+              role: "CTO, DevStudio",
+              text: "We've integrated AV Plugin across all our projects. The consistency and quality it brings to our UI is remarkable. It's streamlined our entire design system implementation."
+            },
+            {
+              id: 3,
+              initials: "SR",
+              name: "Sara Rodriguez",
+              role: "UI/UX Designer, DesignLab",
+              text: "As a designer, I love how AV Plugin bridges the gap between design and development. The components maintain design fidelity while being incredibly flexible for developers to implement."
+            }
+          ];
+
+          // State for active testimonial
+          const [activeIndex, setActiveIndex] = useState(0);
+          const [direction, setDirection] = useState(null);
+          
+          // Handler for next testimonial
+          const nextTestimonial = () => {
+            setDirection('right');
+            setActiveIndex((prev) => (prev + 1) % testimonials.length);
+          };
+          
+          // Handler for previous testimonial
+          const prevTestimonial = () => {
+            setDirection('left');
+            setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+          };
+
+          // Animation variants
+          const variants = {
+            enter: (direction) => ({
+              x: direction === 'right' ? 300 : -300,
+              opacity: 0,
+              scale: 0.9,
+            }),
+            center: {
+              x: 0,
+              opacity: 1,
+              scale: 1,
+              transition: {
+                duration: 0.5,
+                type: "spring",
+                stiffness: 300,
+                damping: 30
+              }
+            },
+            exit: (direction) => ({
+              x: direction === 'right' ? -300 : 300,
+              opacity: 0,
+              scale: 0.9,
+              transition: {
+                duration: 0.3
+              }
+            })
+          };
+
+          return (
+            <>
+              {/* Main Testimonial Card with Animation */}
+              <AnimatePresence mode="wait" custom={direction}>
+                <motion.div
+                  key={activeIndex}
+                  custom={direction}
+                  variants={variants}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  className="bg-gray-800 rounded-lg shadow-lg p-8 md:p-10"
+                >
+                  {/* Quote Mark */}
+                  <div className="absolute top-6 left-6 text-gray-700">
+                    <svg className="h-12 w-12" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
+                      <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
+                    </svg>
                   </div>
+                  
+                  {/* Testimonial Content */}
+                  <div className="relative pl-6 pt-6">
+                    <p className="text-xl font-medium text-gray-300 mb-8">
+                      {testimonials[activeIndex].text}
+                    </p>
+                    
+                    {/* Testimonial Author */}
+                    <div className="flex items-center mt-6">
+                      <motion.div 
+                        className="flex-shrink-0 h-14 w-14 rounded-full bg-gray-700 flex items-center justify-center text-white font-bold text-lg"
+                        initial={{ scale: 0.8, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ delay: 0.2, duration: 0.4 }}
+                      >
+                        {testimonials[activeIndex].initials}
+                      </motion.div>
+                      
+                      <motion.div 
+                        className="ml-4"
+                        initial={{ x: 20, opacity: 0 }}
+                        animate={{ x: 0, opacity: 1 }}
+                        transition={{ delay: 0.3, duration: 0.4 }}
+                      >
+                        <div className="text-white font-medium text-lg">
+                          {testimonials[activeIndex].name}
+                        </div>
+                        <div className="text-gray-400">
+                          {testimonials[activeIndex].role}
+                        </div>
+                      </motion.div>
+                    </div>
+                    
+                    {/* Star Rating */}
+                    <motion.div 
+                      className="mt-4 flex"
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.4, duration: 0.4 }}
+                    >
+                      {[1, 2, 3, 4, 5].map((star) => (
+                        <svg key={star} className="h-6 w-6 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                        </svg>
+                      ))}
+                    </motion.div>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+
+              {/* Navigation Controls */}
+              <div className="flex justify-between items-center mt-8">
+                <motion.button 
+                  onClick={prevTestimonial}
+                  className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-white transition-all duration-200 shadow-lg"
+                  whileHover={{ scale: 1.1, backgroundColor: "#374151" }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                  </svg>
+                </motion.button>
+
+                {/* Indicator Dots */}
+                <div className="flex space-x-3">
+                  {testimonials.map((_, i) => (
+                    <motion.button 
+                      key={i}
+                      onClick={() => {
+                        setDirection(i > activeIndex ? 'right' : 'left');
+                        setActiveIndex(i);
+                      }}
+                      className={`w-3 h-3 rounded-full transition-all duration-300 ${i === activeIndex ? 'bg-white w-6' : 'bg-gray-600 hover:bg-gray-500'}`}
+                      whileHover={{ scale: 1.2 }}
+                      whileTap={{ scale: 0.9 }}
+                      animate={{ scale: i === activeIndex ? 1.2 : 1 }}
+                      transition={{ duration: 0.2 }}
+                    />
+                  ))}
                 </div>
+
+                <motion.button 
+                  onClick={nextTestimonial}
+                  className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-white transition-all duration-200 shadow-lg"
+                  whileHover={{ scale: 1.1, backgroundColor: "#374151" }}
+                  whileTap={{ scale: 0.9 }}
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                  </svg>
+                </motion.button>
               </div>
-            </div>
-          </div>
-        </div>
+            </>
+          );
+        })()}
+      </motion.div>
+
+      {/* Testimonial Stats */}
+      <div className="mt-20 grid grid-cols-2 gap-4 sm:grid-cols-4">
+        <motion.div 
+          className="bg-gray-800 rounded-lg p-6 text-center"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+          whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+        >
+          <motion.p 
+            className="text-4xl font-bold text-white"
+            initial={{ scale: 0.5 }}
+            animate={{ scale: 1 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 260, 
+              damping: 20,
+              delay: 0.1
+            }}
+          >500+</motion.p>
+          <p className="text-gray-400 mt-2">Happy Developers</p>
+        </motion.div>
+        <motion.div 
+          className="bg-gray-800 rounded-lg p-6 text-center"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.1 }}
+          whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+        >
+          <motion.p 
+            className="text-4xl font-bold text-white"
+            initial={{ scale: 0.5 }}
+            animate={{ scale: 1 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 260, 
+              damping: 20,
+              delay: 0.2
+            }}
+          >250+</motion.p>
+          <p className="text-gray-400 mt-2">Projects Built</p>
+        </motion.div>
+        <motion.div 
+          className="bg-gray-800 rounded-lg p-6 text-center"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+        >
+          <motion.p 
+            className="text-4xl font-bold text-white"
+            initial={{ scale: 0.5 }}
+            animate={{ scale: 1 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 260, 
+              damping: 20,
+              delay: 0.3
+            }}
+          >4.9</motion.p>
+          <p className="text-gray-400 mt-2">Average Rating</p>
+        </motion.div>
+        <motion.div 
+          className="bg-gray-800 rounded-lg p-6 text-center"
+          initial={{ y: 50, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+        >
+          <motion.p 
+            className="text-4xl font-bold text-white"
+            initial={{ scale: 0.5 }}
+            animate={{ scale: 1 }}
+            transition={{ 
+              type: "spring", 
+              stiffness: 260, 
+              damping: 20,
+              delay: 0.4
+            }}
+          >98%</motion.p>
+          <p className="text-gray-400 mt-2">Would Recommend</p>
+        </motion.div>
       </div>
+    </div>
+  </div>
+</div>
 
       {/* Newsletter Section */}
       <div className="bg-black">
