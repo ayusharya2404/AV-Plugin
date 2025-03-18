@@ -324,20 +324,33 @@ export default function Example() {
         </div>
       </div>
 
-      {/* Testimonial Section */}
-<div className="py-16 bg-gray-900 overflow-hidden">
+      {/* Enhanced Testimonial Section */}
+<div className="min-h-screen py-24 bg-gradient-to-b from-gray-900 to-black overflow-hidden">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div className="text-center">
-      <h2 className="text-base text-gray-400 font-semibold tracking-wide uppercase">Testimonials</h2>
-      <p className="mt-2 text-3xl font-extrabold text-white sm:text-4xl">
-        Loved by developers
-      </p>
+    <div className="text-center mb-16">
+      <motion.div
+        initial={{ y: -50, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.7 }}
+      >
+        <h2 className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 font-semibold tracking-wide uppercase text-lg">
+          What Developers Say
+        </h2>
+        <p className="mt-3 text-4xl font-extrabold text-white sm:text-5xl lg:text-6xl">
+          Loved by the community
+        </p>
+        <div className="mx-auto mt-6 max-w-xl">
+          <p className="text-xl text-gray-300">
+            Join hundreds of developers who've transformed their workflow with our plugin
+          </p>
+        </div>
+      </motion.div>
     </div>
     
-    {/* Interactive Testimonial Carousel */}
-    <div className="mt-16">
+    {/* Interactive Testimonial Carousel with Enhanced Design */}
+    <div className="mt-20">
       <motion.div 
-        className="relative max-w-3xl mx-auto"
+        className="relative max-w-4xl mx-auto h-fit"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8 }}
@@ -350,34 +363,51 @@ export default function Example() {
               initials: "JD",
               name: "Jane Doe",
               role: "Lead Developer, TechCorp",
-              text: "AV Plugin has completely transformed our development workflow. We're building complex UIs in half the time with better results. It's become an essential tool for our entire team."
+              text: "AV Plugin has completely transformed our development workflow. We're building complex UIs in half the time with better results. It's become an essential tool for our entire team.",
+              image: "/api/placeholder/100/100",
+              color: "from-blue-600 to-cyan-400"
             },
             {
               id: 1,
               initials: "MS",
               name: "Mike Smith",
               role: "Frontend Developer, StartupX",
-              text: "The component library is incredible. I used to spend hours building custom components, now I can prototype entire interfaces in minutes. The documentation is also top-notch!"
+              text: "The component library is incredible. I used to spend hours building custom components, now I can prototype entire interfaces in minutes. The documentation is also top-notch!",
+              image: "/api/placeholder/100/100",
+              color: "from-purple-600 to-pink-400"
             },
             {
               id: 2,
               initials: "AL",
               name: "Alex Lee",
               role: "CTO, DevStudio",
-              text: "We've integrated AV Plugin across all our projects. The consistency and quality it brings to our UI is remarkable. It's streamlined our entire design system implementation."
+              text: "We've integrated AV Plugin across all our projects. The consistency and quality it brings to our UI is remarkable. It's streamlined our entire design system implementation.",
+              image: "/api/placeholder/100/100",
+              color: "from-emerald-600 to-teal-400"
             },
             {
               id: 3,
               initials: "SR",
               name: "Sara Rodriguez",
               role: "UI/UX Designer, DesignLab",
-              text: "As a designer, I love how AV Plugin bridges the gap between design and development. The components maintain design fidelity while being incredibly flexible for developers to implement."
+              text: "As a designer, I love how AV Plugin bridges the gap between design and development. The components maintain design fidelity while being incredibly flexible for developers to implement.",
+              image: "/api/placeholder/100/100",
+              color: "from-amber-600 to-yellow-400"
             }
           ];
 
           // State for active testimonial
           const [activeIndex, setActiveIndex] = useState(0);
           const [direction, setDirection] = useState(null);
+          
+          // Auto-rotate testimonials
+          useEffect(() => {
+            const timer = setTimeout(() => {
+              nextTestimonial();
+            }, 8000);
+            
+            return () => clearTimeout(timer);
+          }, [activeIndex]);
           
           // Handler for next testimonial
           const nextTestimonial = () => {
@@ -430,25 +460,34 @@ export default function Example() {
                   initial="enter"
                   animate="center"
                   exit="exit"
-                  className="bg-gray-800 rounded-lg shadow-lg p-8 md:p-10"
+                  className="relative bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl p-10 md:p-12 border border-gray-700 overflow-hidden"
                 >
+                  {/* Background Glow Effect */}
+                  <div className={`absolute -right-20 -top-20 w-64 h-64 rounded-full bg-gradient-to-br ${testimonials[activeIndex].color} opacity-20 blur-3xl`}></div>
+                  <div className={`absolute -left-20 -bottom-20 w-64 h-64 rounded-full bg-gradient-to-tl ${testimonials[activeIndex].color} opacity-10 blur-3xl`}></div>
+                  
                   {/* Quote Mark */}
-                  <div className="absolute top-6 left-6 text-gray-700">
-                    <svg className="h-12 w-12" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
+                  <div className="absolute top-8 left-8 text-gray-700">
+                    <svg className="h-16 w-16" fill="currentColor" viewBox="0 0 32 32" aria-hidden="true">
                       <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z" />
                     </svg>
                   </div>
                   
                   {/* Testimonial Content */}
-                  <div className="relative pl-6 pt-6">
-                    <p className="text-xl font-medium text-gray-300 mb-8">
-                      {testimonials[activeIndex].text}
-                    </p>
+                  <div className="relative pl-8 pt-8">
+                    <motion.p 
+                      className="text-2xl font-medium text-gray-200 leading-relaxed mb-10"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.2, duration: 0.5 }}
+                    >
+                      "{testimonials[activeIndex].text}"
+                    </motion.p>
                     
                     {/* Testimonial Author */}
-                    <div className="flex items-center mt-6">
+                    <div className="flex items-center mt-8">
                       <motion.div 
-                        className="flex-shrink-0 h-14 w-14 rounded-full bg-gray-700 flex items-center justify-center text-white font-bold text-lg"
+                        className={`flex-shrink-0 h-16 w-16 rounded-full bg-gradient-to-br ${testimonials[activeIndex].color} flex items-center justify-center text-white font-bold text-xl shadow-lg`}
                         initial={{ scale: 0.8, opacity: 0 }}
                         animate={{ scale: 1, opacity: 1 }}
                         transition={{ delay: 0.2, duration: 0.4 }}
@@ -457,15 +496,15 @@ export default function Example() {
                       </motion.div>
                       
                       <motion.div 
-                        className="ml-4"
+                        className="ml-5"
                         initial={{ x: 20, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         transition={{ delay: 0.3, duration: 0.4 }}
                       >
-                        <div className="text-white font-medium text-lg">
+                        <div className="text-white font-semibold text-xl">
                           {testimonials[activeIndex].name}
                         </div>
-                        <div className="text-gray-400">
+                        <div className="text-gray-400 text-lg">
                           {testimonials[activeIndex].role}
                         </div>
                       </motion.div>
@@ -473,13 +512,13 @@ export default function Example() {
                     
                     {/* Star Rating */}
                     <motion.div 
-                      className="mt-4 flex"
+                      className="mt-5 flex"
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       transition={{ delay: 0.4, duration: 0.4 }}
                     >
                       {[1, 2, 3, 4, 5].map((star) => (
-                        <svg key={star} className="h-6 w-6 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                        <svg key={star} className="h-7 w-7 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                           <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118l-2.8-2.034c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
                       ))}
@@ -488,11 +527,11 @@ export default function Example() {
                 </motion.div>
               </AnimatePresence>
 
-              {/* Navigation Controls */}
-              <div className="flex justify-between items-center mt-8">
+              {/* Enhanced Navigation Controls */}
+              <div className="flex justify-between items-center mt-12">
                 <motion.button 
                   onClick={prevTestimonial}
-                  className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-white transition-all duration-200 shadow-lg"
+                  className="p-4 rounded-full bg-gray-800 hover:bg-gray-700 text-white transition-all duration-200 shadow-lg border border-gray-700"
                   whileHover={{ scale: 1.1, backgroundColor: "#374151" }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -501,8 +540,8 @@ export default function Example() {
                   </svg>
                 </motion.button>
 
-                {/* Indicator Dots */}
-                <div className="flex space-x-3">
+                {/* Enhanced Indicator Dots */}
+                <div className="flex space-x-4">
                   {testimonials.map((_, i) => (
                     <motion.button 
                       key={i}
@@ -510,7 +549,11 @@ export default function Example() {
                         setDirection(i > activeIndex ? 'right' : 'left');
                         setActiveIndex(i);
                       }}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${i === activeIndex ? 'bg-white w-6' : 'bg-gray-600 hover:bg-gray-500'}`}
+                      className={`h-3 rounded-full transition-all duration-300 ${
+                        i === activeIndex 
+                          ? `w-10 bg-gradient-to-r ${testimonials[i].color}` 
+                          : 'w-3 bg-gray-600 hover:bg-gray-500'
+                      }`}
                       whileHover={{ scale: 1.2 }}
                       whileTap={{ scale: 0.9 }}
                       animate={{ scale: i === activeIndex ? 1.2 : 1 }}
@@ -521,7 +564,7 @@ export default function Example() {
 
                 <motion.button 
                   onClick={nextTestimonial}
-                  className="p-3 rounded-full bg-gray-800 hover:bg-gray-700 text-white transition-all duration-200 shadow-lg"
+                  className="p-4 rounded-full bg-gray-800 hover:bg-gray-700 text-white transition-all duration-200 shadow-lg border border-gray-700"
                   whileHover={{ scale: 1.1, backgroundColor: "#374151" }}
                   whileTap={{ scale: 0.9 }}
                 >
@@ -535,17 +578,27 @@ export default function Example() {
         })()}
       </motion.div>
 
-      {/* Testimonial Stats */}
-      <div className="mt-20 grid grid-cols-2 gap-4 sm:grid-cols-4">
+      {/* Enhanced Testimonial Stats */}
+      <div className="mt-32 grid grid-cols-2 gap-6 sm:grid-cols-4 px-4">
         <motion.div 
-          className="bg-gray-800 rounded-lg p-6 text-center"
+          className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-8 text-center shadow-xl border border-gray-700"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+          whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.3)" }}
         >
+          <motion.div
+            className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-blue-600 to-cyan-400 flex items-center justify-center"
+            initial={{ scale: 0.5 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "spring", stiffness: 260, damping: 20 }}
+          >
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+            </svg>
+          </motion.div>
           <motion.p 
-            className="text-4xl font-bold text-white"
+            className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300"
             initial={{ scale: 0.5 }}
             animate={{ scale: 1 }}
             transition={{ 
@@ -555,17 +608,28 @@ export default function Example() {
               delay: 0.1
             }}
           >500+</motion.p>
-          <p className="text-gray-400 mt-2">Happy Developers</p>
+          <p className="text-gray-300 mt-2 text-lg">Happy Developers</p>
         </motion.div>
+        
         <motion.div 
-          className="bg-gray-800 rounded-lg p-6 text-center"
+          className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-8 text-center shadow-xl border border-gray-700"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+          whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.3)" }}
         >
+          <motion.div
+            className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-purple-600 to-pink-400 flex items-center justify-center"
+            initial={{ scale: 0.5 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.1 }}
+          >
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" />
+            </svg>
+          </motion.div>
           <motion.p 
-            className="text-4xl font-bold text-white"
+            className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-300"
             initial={{ scale: 0.5 }}
             animate={{ scale: 1 }}
             transition={{ 
@@ -575,17 +639,28 @@ export default function Example() {
               delay: 0.2
             }}
           >250+</motion.p>
-          <p className="text-gray-400 mt-2">Projects Built</p>
+          <p className="text-gray-300 mt-2 text-lg">Projects Built</p>
         </motion.div>
+        
         <motion.div 
-          className="bg-gray-800 rounded-lg p-6 text-center"
+          className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-8 text-center shadow-xl border border-gray-700"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+          whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.3)" }}
         >
+          <motion.div
+            className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-emerald-600 to-teal-400 flex items-center justify-center"
+            initial={{ scale: 0.5 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.2 }}
+          >
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+            </svg>
+          </motion.div>
           <motion.p 
-            className="text-4xl font-bold text-white"
+            className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300"
             initial={{ scale: 0.5 }}
             animate={{ scale: 1 }}
             transition={{ 
@@ -595,17 +670,28 @@ export default function Example() {
               delay: 0.3
             }}
           >4.9</motion.p>
-          <p className="text-gray-400 mt-2">Average Rating</p>
+          <p className="text-gray-300 mt-2 text-lg">Average Rating</p>
         </motion.div>
+        
         <motion.div 
-          className="bg-gray-800 rounded-lg p-6 text-center"
+          className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-8 text-center shadow-xl border border-gray-700"
           initial={{ y: 50, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)" }}
+          whileHover={{ y: -10, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.3)" }}
         >
+          <motion.div
+            className="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-br from-amber-600 to-yellow-400 flex items-center justify-center"
+            initial={{ scale: 0.5 }}
+            animate={{ scale: 1 }}
+            transition={{ type: "spring", stiffness: 260, damping: 20, delay: 0.3 }}
+          >
+            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+            </svg>
+          </motion.div>
           <motion.p 
-            className="text-4xl font-bold text-white"
+            className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-amber-400 to-yellow-300"
             initial={{ scale: 0.5 }}
             animate={{ scale: 1 }}
             transition={{ 
@@ -615,9 +701,26 @@ export default function Example() {
               delay: 0.4
             }}
           >98%</motion.p>
-          <p className="text-gray-400 mt-2">Would Recommend</p>
+          <p className="text-gray-300 mt-2 text-lg">Would Recommend</p>
         </motion.div>
       </div>
+      
+      {/* Call to Action */}
+      <motion.div 
+        className="mt-24 text-center"
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.5, duration: 0.6 }}
+      >
+        <motion.button
+          className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+          whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.3)" }}
+          whileTap={{ scale: 0.98 }}
+        >
+          Try AV Plugin Today
+        </motion.button>
+        <p className="mt-4 text-gray-400">Join our growing community of developers</p>
+      </motion.div>
     </div>
   </div>
 </div>
