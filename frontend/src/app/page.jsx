@@ -7,7 +7,6 @@ const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeFeature, setActiveFeature] = useState(0);
-  const [activePlan, setActivePlan] = useState('monthly');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -106,7 +105,7 @@ const Home = () => {
             <div className="hidden md:block">
               <div className="ml-10 flex items-center space-x-4">
                 <a href="#features" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Features</a>
-                <a href="#pricing" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Installation</a>
+                <a href="#pricing" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Documentation</a>
                 <a href="#about" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">About</a>
                 <button className="bg-gray-800 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors duration-200">Login</button>
                 <button className="bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-500 transition-colors duration-200">Sign Up</button>
@@ -128,7 +127,6 @@ const Home = () => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/95 backdrop-blur-sm">
             <a href="#features" className="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Features</a>
             <a href="#docs" className="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Documentation</a>
-            <a href="#pricing" className="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Pricing</a>
             <a href="#about" className="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">About</a>
             <button className="w-full text-left hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Login</button>
             <button className="w-full bg-gray-600 text-white px-3 py-2 rounded-md text-base font-medium hover:bg-gray-500 transition-colors duration-200">Sign Up</button>
@@ -767,53 +765,21 @@ export default function Example() {
       </div>
 
       {/* Footer */}
-      <footer className="bg-gray-900">
-        <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-            <div>
-              <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Product</h3>
-              <ul className="mt-4 space-y-4">
-                <li><a href="#" className="text-base text-gray-500 hover:text-white">Features</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-white">Pricing</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-white">Documentation</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-white">Releases</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Support</h3>
-              <ul className="mt-4 space-y-4">
-                <li><a href="#" className="text-base text-gray-500 hover:text-white">Help Center</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-white">Community</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-white">Tutorials</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-white">Contact</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Company</h3>
-              <ul className="mt-4 space-y-4">
-                <li><a href="#" className="text-base text-gray-500 hover:text-white">About</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-white">Blog</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-white">Careers</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-white">Press</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-gray-400 tracking-wider uppercase">Legal</h3>
-              <ul className="mt-4 space-y-4">
-                <li><a href="#" className="text-base text-gray-500 hover:text-white">Privacy</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-white">Terms</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-white">License</a></li>
-                <li><a href="#" className="text-base text-gray-500 hover:text-white">Cookies</a></li>
-              </ul>
-            </div>
-          </div>
-          <div className="mt-12 border-t border-gray-700 pt-8">
-            <p className="text-base text-gray-400 text-center">
-              &copy; {new Date().getFullYear()} AV Plugin. All rights reserved.
-            </p>
-          </div>
-        </div>
-      </footer>
+<footer className="bg-gray-900">
+  <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+    <div className="flex flex-wrap justify-center gap-20">
+      <a href="#" className="text-base text-gray-400 hover:text-white">Features</a>
+      <a href="#" className="text-base text-gray-400 hover:text-white">Documentation</a>
+      <a href="#" className="text-base text-gray-400 hover:text-white">Contact Us</a>
+      <a href="#" className="text-base text-gray-400 hover:text-white">About</a>
+    </div>
+    <div className="mt-8 border-t border-gray-700 pt-6">
+      <p className="text-sm text-gray-400 text-center">
+        &copy; {new Date().getFullYear()} AV Plugin. All rights reserved.
+      </p>
+    </div>
+  </div>
+</footer>
     </div>
   );
 };
