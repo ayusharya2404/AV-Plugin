@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
+import Link from 'next/link';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -43,12 +44,20 @@ const Navbar = () => {
           </div>
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-4">
-              <a href="#features" className="text-white hover:text-white/80 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Features</a>
-              <a href="#docs" className="text-white hover:text-white/80 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Documentation</a>
-              {/* <a href="#pricing" className="text-white hover:text-white/80 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Pricing</a> */}
-              <a href="#about" className="text-white hover:text-white/80 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">About</a>
-              <button type="button" className="bg-gray-800 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors duration-200">Login</button>
-              <button type="button" className="bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-500 transition-colors duration-200">Sign Up</button>
+              <Link href="#features" className="text-white hover:text-white/80 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Features</Link>
+              <Link href="/documentation" className="text-white hover:text-white/80 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Documentation</Link>
+              <Link href="/installation" className="text-white hover:text-white/80 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Installation</Link>
+              <Link href="/about" className="text-white hover:text-white/80 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">About</Link>
+              <button type="button" className="bg-gray-800 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors duration-200">
+                <Link href='/login'>
+                Login
+                </Link>
+                </button>
+              <button type="button" className="bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-500 transition-colors duration-200">
+                <Link href='/signup'>
+                Sign Up
+                </Link>
+                </button>
             </div>
           </div>
           <div className="md:hidden">
@@ -71,12 +80,20 @@ const Navbar = () => {
         }`}
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/95 backdrop-blur-sm">
-          <a href="#features" className="text-white hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Features</a>
-          <a href="#docs" className="text-white hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Documentation</a>
-          <a href="#pricing" className="text-white hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Pricing</a>
-          <a href="#about" className="text-white hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">About</a>
-          <button type="button" className="w-full text-left text-white hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Login</button>
-          <button type="button" className="w-full bg-gray-600 text-white px-3 py-2 rounded-md text-base font-medium hover:bg-gray-500 transition-colors duration-200">Sign Up</button>
+          <Link href="#features" className="text-white hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Features</Link>
+          <Link href="/documentation" className="text-white hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Documentation</Link>
+          <Link href="/installation" className="text-white hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Installation</Link>
+          <Link href="/about" className="text-white hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">About</Link>
+          <button type="button" className="w-full text-left text-white hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">
+            <Link href='/login'>
+            Login
+            </Link>
+            </button>
+          <button type="button" className="w-full bg-gray-600 text-white px-3 py-2 rounded-md text-base font-medium hover:bg-gray-500 transition-colors duration-200">
+          <Link href='/signup'>
+          Sign Up
+          </Link>
+          </button>
         </div>
       </div>
     </nav>

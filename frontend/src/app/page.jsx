@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Code, Layout, Zap, Shield, Menu, X, Check } from 'lucide-react';
+import Link from 'next/link';
 
 const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -55,39 +56,6 @@ const Home = () => {
     }
   ];
 
-  const pricingPlans = {
-    weekly: {
-      price: "$9.99",
-      period: "week",
-      features: [
-        "Access to all components",
-        "Basic email support",
-        "Community access",
-        "Weekly updates"
-      ]
-    },
-    monthly: {
-      price: "$19.99",
-      period: "month",
-      features: [
-        "Everything in Weekly",
-        "Priority email support",
-        "Premium components",
-        "Advanced tutorials"
-      ]
-    },
-    yearly: {
-      price: "$99.99",
-      period: "year",
-      features: [
-        "Everything in Monthly",
-        "24/7 phone support",
-        "Custom component requests",
-        "Team collaboration tools",
-        "Early access to new features"
-      ]
-    }
-  };
 
   return (
     
@@ -104,11 +72,19 @@ const Home = () => {
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-center space-x-4">
-                <a href="#features" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Features</a>
-                <a href="#pricing" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Documentation</a>
-                <a href="#about" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">About</a>
-                <button className="bg-gray-800 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors duration-200">Login</button>
-                <button className="bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-500 transition-colors duration-200">Sign Up</button>
+                <Link href="#features" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Features</Link>
+                <Link href="/installation" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Installation</Link>
+                <Link href="#about" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">About</Link>
+                <button className="bg-gray-800 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors duration-200">
+                <Link href='/login'>
+                Login
+                </Link>
+                </button>
+                <button className="bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-500 transition-colors duration-200">
+                  <Link href='/signup'>
+                  Sign Up
+                  </Link>
+                </button>
               </div>
             </div>
             <div className="md:hidden">
@@ -125,11 +101,15 @@ const Home = () => {
         {/* Mobile menu */}
         <div className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/95 backdrop-blur-sm">
-            <a href="#features" className="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Features</a>
-            <a href="#docs" className="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Documentation</a>
-            <a href="#about" className="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">About</a>
-            <button className="w-full text-left hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Login</button>
-            <button className="w-full bg-gray-600 text-white px-3 py-2 rounded-md text-base font-medium hover:bg-gray-500 transition-colors duration-200">Sign Up</button>
+            <Link href="#features" className="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Features</Link>
+            <Link href="/installation" className="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Installation</Link>
+            <Link href="/about" className="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">About</Link>
+            <Link href='/login' className="w-full text-left hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Login</Link>
+            <button  className="w-full bg-gray-600 text-white px-3 py-2 rounded-md text-base font-medium hover:bg-gray-500 transition-colors duration-200">
+            <Link href='/signup'>
+            SignUp
+            </Link>
+            </button>
           </div>
         </div>
       </nav>
@@ -140,40 +120,44 @@ const Home = () => {
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-24 sm:pt-32 sm:pb-40 relative text-center">
 
     {/* Animated Heading */}
-    <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-wide inline-flex justify-center">
-      <motion.span
-        initial={{ opacity: 0, x: -50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-        className="inline-block mx-2"
-      >
-        Supercharge  
-      </motion.span>
-      <motion.span
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-        className="inline-block mx-2"
-      >
-        your  
-      </motion.span>
-      <motion.span
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-        className="inline-block text-gray-400 mx-2"
-      >
-        Tailwind  
-      </motion.span>
-      <motion.span
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
-        className="inline-block text-gray-400 mx-2"
-      >
-        Projects
-      </motion.span>
-    </h1>
+<h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white tracking-wide">
+  <div className="flex flex-wrap justify-center">
+    <motion.span
+      initial={{ opacity: 0, x: -30 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="inline-block mx-1 sm:mx-2"
+    >
+      Supercharge
+    </motion.span>
+    <motion.span
+      initial={{ opacity: 0, x: 30 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+      className="inline-block mx-1 sm:mx-2"
+    >
+      your
+    </motion.span>
+  </div>
+  <div className="flex flex-wrap justify-center mt-1 sm:mt-2">
+    <motion.span
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+      className="inline-block text-gray-400 mx-1 sm:mx-2"
+    >
+      Tailwind
+    </motion.span>
+    <motion.span
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+      className="inline-block text-gray-400 mx-1 sm:mx-2"
+    >
+      Projects
+    </motion.span>
+  </div>
+</h1>
 
     {/* Increased Spacing for Subtitle */}
     <motion.p 
@@ -323,7 +307,7 @@ export default function Example() {
       </div>
 
       {/* Enhanced Testimonial Section */}
-<div className="min-h-screen py-24 bg-gradient-to-b from-gray-900 to-black overflow-hidden">
+<div className="min-h-screen py-24 bg-gradient-to-b from-gray-900 to-neutral-950 overflow-hidden">
   <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div className="text-center mb-16">
       <motion.div
@@ -711,7 +695,7 @@ export default function Example() {
         transition={{ delay: 0.5, duration: 0.6 }}
       >
         <motion.button
-          className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
+          className="px-8 py-4 bg-gradient-to-r from-gray-600 to-gray-900 text-white text-lg font-medium rounded-full shadow-lg hover:shadow-xl transition-all duration-300"
           whileHover={{ scale: 1.05, boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.3)" }}
           whileTap={{ scale: 0.98 }}
         >
@@ -724,7 +708,7 @@ export default function Example() {
 </div>
 
       {/* Newsletter Section */}
-      <div className="bg-black">
+      <div className="bg-neutral-950">
         <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
           <div className="px-6 py-6 bg-gray-800 rounded-lg md:py-12 md:px-12 lg:px-16 xl:flex xl:items-center">
             <div className="xl:w-0 xl:flex-1">
