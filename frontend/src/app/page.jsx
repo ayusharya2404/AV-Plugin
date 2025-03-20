@@ -74,6 +74,7 @@ const Home = () => {
               <div className="ml-10 flex items-center space-x-4">
                 <Link href="#features" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Features</Link>
                 <Link href="/installation" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Installation</Link>
+                <Link href="/documentation" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Documentation</Link>
                 <Link href="#about" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">About</Link>
                 <button className="bg-gray-800 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors duration-200">
                 <Link href='/login'>
@@ -103,6 +104,7 @@ const Home = () => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/95 backdrop-blur-sm">
             <Link href="#features" className="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Features</Link>
             <Link href="/installation" className="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Installation</Link>
+            <Link href="/documentation" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Documentation</Link>
             <Link href="/about" className="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">About</Link>
             <Link href='/login' className="w-full text-left hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Login</Link>
             <button  className="w-full bg-gray-600 text-white px-3 py-2 rounded-md text-base font-medium hover:bg-gray-500 transition-colors duration-200">

@@ -19,7 +19,7 @@ export default function AVPluginDocs() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-r from-gray-800 to-neutral-900 text-gray-200">
+    <div className="min-h-screen bg-gradient-to-b from-gray-800 to-neutral-950 overflow-hidden text-gray-200">
       {/* Main content */}
       <main className="max-w-6xl mx-auto py-8 px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
