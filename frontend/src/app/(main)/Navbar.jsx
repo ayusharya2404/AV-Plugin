@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -35,13 +36,20 @@ const Navbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <div className="flex items-center">
-            <span className="flex items-center font-bold text-xl lg:text-2xl text-white">
-              <span className="bg-gray-800 text-white px-2 py-1 rounded mr-1">AV</span>
-              Plugin
-            </span>
-          </div>
+  <div className="flex items-center justify-between h-16">
+    <div className="flex items-center">
+      <Link href="/" className="flex items-center">
+        <div className="relative h-10 w-35 md:h-16 md:w-24 lg:h-20 lg:w-32">
+          <Image 
+            src="/logo1.svg" 
+            alt="Logo" 
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
+      </Link>
+    </div>
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-4">
               <Link href="#features" className="text-white hover:text-white/80 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Features</Link>

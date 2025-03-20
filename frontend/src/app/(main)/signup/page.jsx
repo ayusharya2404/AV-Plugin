@@ -1,6 +1,7 @@
 'use client'
 import { React, useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const SignUp = () => {
   return (
@@ -112,7 +113,9 @@ const SignUp = () => {
               whileHover={{ scale: 1.03 }}
               className="text-gray-200 underline cursor-pointer"
             >
+              <Link href='/login'>
               Log in
+              </Link>
             </motion.span>
           </p>
         </div>

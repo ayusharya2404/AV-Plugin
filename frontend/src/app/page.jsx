@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Code, Layout, Zap, Shield, Menu, X, Check } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const Home = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -62,59 +63,66 @@ const Home = () => {
    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-black text-gray-300">
       {/* Navbar */}
       <nav className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-black/80 backdrop-blur-md shadow-md' : 'bg-transparent'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <div className="flex items-center">
-              <span className="flex items-center font-bold text-xl lg:text-2xl text-gray-300">
-                <span className="bg-gray-800 text-white px-2 py-1 rounded mr-1">AV</span>
-                Plugin
-              </span>
-            </div>
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-center space-x-4">
-                <Link href="#features" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Features</Link>
-                <Link href="/installation" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Installation</Link>
-                <Link href="/documentation" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Documentation</Link>
-                <Link href="#about" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">About</Link>
-                <button className="bg-gray-800 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors duration-200">
-                <Link href='/login'>
-                Login
-                </Link>
-                </button>
-                <button className="bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-500 transition-colors duration-200">
-                  <Link href='/signup'>
-                  Sign Up
-                  </Link>
-                </button>
-              </div>
-            </div>
-            <div className="md:hidden">
-              <button
-                onClick={toggleMenu}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white focus:outline-none"
-              >
-                {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-              </button>
-            </div>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex items-center justify-between h-16">
+      <div className="flex items-center">
+        <Link href="/" className="flex items-center">
+          <div className="relative h-15 w-35 md:h-16 md:w-24 lg:h-20 lg:w-32">
+            <Image 
+              src="/logo1.svg" 
+              alt="Logo" 
+              fill
+              className="object-contain"
+              priority
+            />
           </div>
-        </div>
-
-        {/* Mobile menu */}
-        <div className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/95 backdrop-blur-sm">
-            <Link href="#features" className="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Features</Link>
-            <Link href="/installation" className="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Installation</Link>
-            <Link href="/documentation" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Documentation</Link>
-            <Link href="/about" className="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">About</Link>
-            <Link href='/login' className="w-full text-left hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Login</Link>
-            <button  className="w-full bg-gray-600 text-white px-3 py-2 rounded-md text-base font-medium hover:bg-gray-500 transition-colors duration-200">
-            <Link href='/signup'>
-            SignUp
+        </Link>
+      </div>
+      <div className="hidden md:block">
+        <div className="ml-10 flex items-center space-x-4">
+          <Link href="#features" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Features</Link>
+          <Link href="/installation" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Installation</Link>
+          <Link href="/documentation" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Documentation</Link>
+          <Link href="#about" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">About</Link>
+          <button className="bg-gray-800 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors duration-200">
+            <Link href='/login'>
+              Login
             </Link>
-            </button>
-          </div>
+          </button>
+          <button className="bg-gray-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-500 transition-colors duration-200">
+            <Link href='/signup'>
+              Sign Up
+            </Link>
+          </button>
         </div>
-      </nav>
+      </div>
+      <div className="md:hidden">
+        <button
+          onClick={toggleMenu}
+          className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white focus:outline-none"
+        >
+          {isMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  {/* Mobile menu */}
+  <div className={`md:hidden transition-all duration-300 ease-in-out ${isMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
+    <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/95 backdrop-blur-sm">
+      <Link href="#features" className="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Features</Link>
+      <Link href="/installation" className="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Installation</Link>
+      <Link href="/documentation" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Documentation</Link>
+      <Link href="/about" className="hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">About</Link>
+      <Link href='/login' className="w-full text-left hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Login</Link>
+      <button className="w-full bg-gray-600 text-white px-3 py-2 rounded-md text-base font-medium hover:bg-gray-500 transition-colors duration-200">
+        <Link href='/signup'>
+          SignUp
+        </Link>
+      </button>
+    </div>
+  </div>
+</nav>
       
 {/* Hero Section */}
 <div className="relative pt-16">
@@ -179,7 +187,7 @@ const Home = () => {
       transition={{ duration: 1, delay: 0.6 }}
     >
       <motion.a
-        href="#"
+        href="/installation"
         className="px-8 py-3 border border-transparent text-lg font-medium rounded-md text-black bg-gray-300 hover:bg-white md:py-4 md:px-10 transition-all duration-200 transform hover:scale-105"
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
@@ -187,7 +195,7 @@ const Home = () => {
         Get Started
       </motion.a>
       <motion.a
-        href="#"
+        href="/documentation"
         className="px-8 py-3 border border-transparent text-lg font-medium rounded-md text-white bg-gray-800 hover:bg-gray-700 md:py-4 md:px-10 transition-all duration-200"
         whileHover={{ scale: 1.08 }}
         whileTap={{ scale: 0.95 }}
@@ -290,7 +298,7 @@ export default function Example() {
           <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
             <div className="inline-flex rounded-md shadow">
               <a
-                href="#"
+                href="/installation"
                 className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-black bg-gray-300 hover:bg-white transition-colors duration-200"
               >
                 Get started
@@ -298,7 +306,7 @@ export default function Example() {
             </div>
             <div className="ml-3 inline-flex rounded-md shadow">
               <a
-                href="#"
+                href="/documentation"
                 className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-gray-900 hover:bg-gray-700 transition-colors duration-200"
               >
                 Learn more
@@ -690,6 +698,7 @@ export default function Example() {
       </div>
       
       {/* Call to Action */}
+      <Link href='/installation'>
       <motion.div 
         className="mt-24 text-center"
         initial={{ opacity: 0, y: 30 }}
@@ -705,6 +714,7 @@ export default function Example() {
         </motion.button>
         <p className="mt-4 text-gray-400">Join our growing community of developers</p>
       </motion.div>
+      </Link>
     </div>
   </div>
 </div>
@@ -751,21 +761,24 @@ export default function Example() {
       </div>
 
       {/* Footer */}
-<footer className="bg-gray-900">
-  <div className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
-    <div className="flex flex-wrap justify-center gap-20">
-      <a href="#" className="text-base text-gray-400 hover:text-white">Features</a>
-      <a href="#" className="text-base text-gray-400 hover:text-white">Documentation</a>
-      <a href="#" className="text-base text-gray-400 hover:text-white">Contact Us</a>
-      <a href="#" className="text-base text-gray-400 hover:text-white">About</a>
-    </div>
-    <div className="mt-8 border-t border-gray-700 pt-6">
-      <p className="text-sm text-gray-400 text-center">
-        &copy; {new Date().getFullYear()} AV Plugin. All rights reserved.
-      </p>
-    </div>
-  </div>
-</footer>
+<footer className="bg-gray-900 border-t border-gray-800 text-white">
+      <div className="w-full max-w-7xl mx-auto px-3 sm:px-4 py-3">
+        {/* Navigation Links - more compact layout */}
+        <div className="flex flex-wrap justify-center gap-x-6 sm:gap-x-10 md:gap-x-16 gap-y-2">
+          <Link href="/installation" className="text-gray-300 hover:text-white transition-colors duration-300 text-sm sm:text-base">Installation</Link>
+          <Link href="/documentation" className="text-gray-300 hover:text-white transition-colors duration-300 text-sm sm:text-base">Documentation</Link>
+          <Link href="/contact" className="text-gray-300 hover:text-white transition-colors duration-300 text-sm sm:text-base">Contact Us</Link>
+          <Link href="/about" className="text-gray-300 hover:text-white transition-colors duration-300 text-sm sm:text-base">About</Link>
+        </div>
+
+        {/* Copyright section - reduced spacing */}
+        <div className="border-t border-gray-800 mt-4 pt-3">
+          <p className="text-gray-300 text-xs sm:text-sm text-center">
+            © {new Date().getFullYear()} AV Plugin. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
     </div>
   );
 };
