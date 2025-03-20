@@ -67,7 +67,7 @@ const Home = () => {
     <div className="flex items-center justify-between h-16">
       <div className="flex items-center">
         <Link href="/" className="flex items-center">
-          <div className="relative h-15 w-35 md:h-16 md:w-24 lg:h-20 lg:w-32">
+          <div className="relative h-20 w-40 md:h-16 md:w-24 lg:h-20 lg:w-32">
             <Image 
               src="/logo1.svg" 
               alt="Logo" 
@@ -83,7 +83,7 @@ const Home = () => {
           <Link href="#features" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Features</Link>
           <Link href="/installation" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Installation</Link>
           <Link href="/documentation" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Documentation</Link>
-          <Link href="#about" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">About</Link>
+          <Link href="/about" className="hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">About</Link>
           <button className="bg-gray-800 px-4 py-2 rounded-md text-sm font-medium hover:bg-gray-700 transition-colors duration-200">
             <Link href='/login'>
               Login
