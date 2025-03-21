@@ -1,5 +1,6 @@
 "use client"
 import React, { useState } from 'react';
+import Link from 'next/link';
 
 const InstallationPage = () => {
   const [copySuccess, setCopySuccess] = useState({
@@ -199,7 +200,9 @@ module.exports = {
             </ul>
             <div className="mt-6">
               <button className="px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-lg transition-colors duration-200 transform hover:scale-105">
+                <Link href='/documentation'>
                 View Documentation
+                </Link>
               </button>
             </div>
           </div>

@@ -52,7 +52,7 @@ const Navbar = () => {
     </div>
           <div className="hidden md:block">
             <div className="ml-10 flex items-center space-x-4">
-              <Link href="#features" className="text-white hover:text-white/80 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Features</Link>
+              <Link href="/" className="text-white hover:text-white/80 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Home</Link>
               <Link href="/documentation" className="text-white hover:text-white/80 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Documentation</Link>
               <Link href="/installation" className="text-white hover:text-white/80 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">Installation</Link>
               <Link href="/about" className="text-white hover:text-white/80 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200">About</Link>
@@ -88,7 +88,7 @@ const Navbar = () => {
         }`}
       >
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-black/95 backdrop-blur-sm">
-          <Link href="#features" className="text-white hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Features</Link>
+          <Link href="/" className="text-white hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Home</Link>
           <Link href="/documentation" className="text-white hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Documentation</Link>
           <Link href="/installation" className="text-white hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">Installation</Link>
           <Link href="/about" className="text-white hover:bg-gray-800 block px-3 py-2 rounded-md text-base font-medium transition-colors duration-200">About</Link>
