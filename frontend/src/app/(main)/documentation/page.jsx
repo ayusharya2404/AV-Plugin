@@ -20,12 +20,12 @@ export default function AVPluginDocs() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-800 to-neutral-950 overflow-hidden text-gray-200">
-      {/* Main content */}
-      <main className="max-w-6xl mx-auto py-8 px-4 md:px-8">
+      {/* Main content - Added top margin (mt-16) to prevent nav bar overlap */}
+      <main className="max-w-6xl mx-auto py-8 px-4 md:px-8 mt-13">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* Sidebar */}
           <aside className="md:col-span-3">
-            <nav className="sticky top-8 bg-gray-900 rounded-lg p-4">
+            <nav className="sticky top-24 bg-gray-900 rounded-lg p-4">
               <h2 className="text-white text-lg font-medium mb-4">Documentation</h2>
               <ul className="space-y-2">
                 <li>
