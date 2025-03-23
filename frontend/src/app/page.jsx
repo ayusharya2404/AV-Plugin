@@ -571,7 +571,7 @@ export default function Example() {
       </motion.div>
 
       {/* Enhanced Testimonial Stats */}
-      <div className="mt-32 grid grid-cols-2 gap-6 sm:grid-cols-4 px-4">
+      <div className="mt-32 grid grid-cols-1 gap-6 sm:grid-cols-4 px-4">
         <motion.div 
           className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-8 text-center shadow-xl border border-gray-700"
           initial={{ y: 50, opacity: 0 }}
