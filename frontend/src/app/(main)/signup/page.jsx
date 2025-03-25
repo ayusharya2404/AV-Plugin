@@ -2,8 +2,21 @@
 import { React, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { Formik , useFormik } from "formik";
 
 const SignUp = () => {
+  const signupForm = useFormik({
+      initialValues:{
+        firstname:'',
+        lastname:'',
+        email:'',
+        password:'',
+        confirmpassword:''
+      },
+      onSubmit:(val)=>{console.log(val);
+        //send values to backend
+      }
+    })
   return (
     <div className="bg-black text-white min-h-screen flex items-center justify-center p-4 pt-20 relative overflow-hidden">
       {/* Background Animation */}
@@ -28,7 +41,7 @@ const SignUp = () => {
         <p className="text-gray-400 text-center text-sm mb-5">
           Join us today and start your journey!
         </p>
-        <form action="#" method="POST" className="space-y-4">
+        <form onSubmit={signupForm.handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label htmlFor="first-name" className="block text-sm font-semibold text-gray-300">
@@ -37,7 +50,9 @@ const SignUp = () => {
               <motion.input
                 whileFocus={{ scale: 1.03 }}
                 type="text"
-                id="first-name"
+                id="firstname"
+                onChange={signupForm.handleChange}
+                value={signupForm.values.firstname}
                 className="mt-1 w-full rounded-md border border-gray-700 bg-black px-3 py-1.5 text-white outline-none focus:ring-1 focus:ring-gray-500 text-sm"
               />
             </div>
@@ -48,7 +63,9 @@ const SignUp = () => {
               <motion.input
                 whileFocus={{ scale: 1.03 }}
                 type="text"
-                id="last-name"
+                id="lastname"
+                onChange={signupForm.handleChange}
+                value={signupForm.values.lastname}
                 className="mt-1 w-full rounded-md border border-gray-700 bg-black px-3 py-1.5 text-white outline-none focus:ring-1 focus:ring-gray-500 text-sm"
               />
             </div>
@@ -61,6 +78,8 @@ const SignUp = () => {
               whileFocus={{ scale: 1.03 }}
               type="email"
               id="email"
+              onChange={signupForm.handleChange}
+                value={signupForm.values.email}
               className="mt-1 w-full rounded-md border border-gray-700 bg-black px-3 py-1.5 text-white outline-none focus:ring-1 focus:ring-gray-500 text-sm"
             />
           </div>
@@ -72,6 +91,8 @@ const SignUp = () => {
               whileFocus={{ scale: 1.03 }}
               type="password"
               id="password"
+              onChange={signupForm.handleChange}
+                value={signupForm.values.password}
               className="mt-1 w-full rounded-md border border-gray-700 bg-black px-3 py-1.5 text-white outline-none focus:ring-1 focus:ring-gray-500 text-sm"
             />
           </div>
@@ -82,7 +103,9 @@ const SignUp = () => {
             <motion.input
               whileFocus={{ scale: 1.03 }}
               type="password"
-              id="confirm-password"
+              id="confirmpassword"
+              onChange={signupForm.handleChange}
+                value={signupForm.values.confirmpassword}
               className="mt-1 w-full rounded-md border border-gray-700 bg-black px-3 py-1.5 text-white outline-none focus:ring-1 focus:ring-gray-500 text-sm"
             />
           </div>

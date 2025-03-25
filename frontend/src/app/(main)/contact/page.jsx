@@ -1,8 +1,22 @@
 'use client'
 import React from "react";
 import { motion } from "framer-motion";
+import { Formik , useFormik } from "formik";
 
 const ContactUs = () => {
+
+  const contactForm = useFormik({
+      initialValues:{
+        firstname:'',
+        lastname:'',
+        email:'',
+        message:''
+      },
+      onSubmit:(val)=>{console.log(val);
+        //send values to backend
+      }
+    })
+
   return (
     <div className="bg-black text-white min-h-screen flex items-center justify-center p-4 pt-20 relative overflow-hidden">
       {/* Background Animation */}
@@ -27,7 +41,8 @@ const ContactUs = () => {
         <p className="text-gray-400 text-center mb-6">
           Get in touch with us – we're here to help and collaborate!
         </p>
-        <form action="#" method="POST" className="space-y-4">
+        <form action="#" method="POST"
+        onSubmit={contactForm.handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
               <label htmlFor="first-name" className="block text-sm font-semibold text-gray-300">
@@ -36,7 +51,9 @@ const ContactUs = () => {
               <motion.input
                 whileFocus={{ scale: 1.05 }}
                 type="text"
-                id="first-name"
+                id="firstname"
+                onChange={contactForm.handleChange}
+                value={contactForm.values.firstname}
                 className="mt-2 w-full rounded-md border border-gray-700 bg-black px-3 py-2 text-white outline-none focus:ring-2 focus:ring-gray-500"
               />
             </div>
@@ -47,7 +64,9 @@ const ContactUs = () => {
               <motion.input
                 whileFocus={{ scale: 1.05 }}
                 type="text"
-                id="last-name"
+                id="lastname"
+                onChange={contactForm.handleChange}
+                value={contactForm.values.lastname}
                 className="mt-2 w-full rounded-md border border-gray-700 bg-black px-3 py-2 text-white outline-none focus:ring-2 focus:ring-gray-500"
               />
             </div>
@@ -60,6 +79,8 @@ const ContactUs = () => {
               whileFocus={{ scale: 1.05 }}
               type="email"
               id="email"
+              onChange={contactForm.handleChange}
+                value={contactForm.values.email}
               className="mt-2 w-full rounded-md border border-gray-700 bg-black px-3 py-2 text-white outline-none focus:ring-2 focus:ring-gray-500"
             />
           </div>
@@ -70,6 +91,8 @@ const ContactUs = () => {
             <motion.textarea
               whileFocus={{ scale: 1.02 }}
               id="message"
+              onChange={contactForm.handleChange}
+                value={contactForm.values.message}
               rows="4"
               className="mt-2 w-full rounded-md border border-gray-700 bg-black px-3 py-2 text-white outline-none focus:ring-2 focus:ring-gray-500"
             ></motion.textarea>

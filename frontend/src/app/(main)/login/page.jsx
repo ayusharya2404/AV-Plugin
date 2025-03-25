@@ -2,27 +2,39 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
+import { Formik , useFormik } from "formik";
 
 const Login = () => {
-  const [formData, setState] = useState({
-    username: "",
-    password: "",
-    rememberMe: false
-  });
+  
+  // const [formData, setState] = useState({
+  //   username: "",
+  //   password: "",
+  //   rememberMe: false
+  // });
 
-  const handleChange = (e) => {
-    const { id, value, checked, type } = e.target;
-    setState(prevState => ({
-      ...prevState,
-      [id]: type === "checkbox" ? checked : value
-    }));
-  };
+  const loginForm = useFormik({
+    initialValues:{
+      username:'',
+      password:'',
+    },
+    onSubmit:(val)=>{console.log(val);
+      //send values to backend
+    }
+  })
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here you would handle the login logic
-    console.log("Login attempt with:", formData);
-  };
+  // const handleChange = (e) => {
+  //   const { id, value, checked, type } = e.target;
+  //   setState(prevState => ({
+  //     ...prevState,
+  //     [id]: type === "checkbox" ? checked : value
+  //   }));
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   // Here you would handle the login logic
+  //   console.log("Login attempt with:", formData);
+  // };
 
   return (
     <div className="bg-black text-white min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
@@ -48,7 +60,8 @@ const Login = () => {
         <p className="text-gray-400 text-center mb-6">
           Welcome back! Please enter your credentials.
         </p>
-        <form onSubmit={handleSubmit} className="space-y-5">
+        {/* {Form} */}
+        <form onSubmit={signupForm.handleSubmit} className="space-y-5">
           <div>
             <label htmlFor="username" className="block text-base font-semibold text-gray-300">
               Username
@@ -57,8 +70,8 @@ const Login = () => {
               whileFocus={{ scale: 1.03 }}
               type="text"
               id="username"
-              value={formData.username}
-              onChange={handleChange}
+              onChange={loginForm.handleChange}
+              value={loginForm.values.username}
               required
               className="mt-2 w-full rounded-md border border-gray-700 bg-black px-4 py-2.5 text-white outline-none focus:ring-1 focus:ring-gray-500"
             />
@@ -71,9 +84,8 @@ const Login = () => {
               whileFocus={{ scale: 1.03 }}
               type="password"
               id="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
+              onChange={loginForm.handleChange}
+              value={loginForm.values.password}
               className="mt-2 w-full rounded-md border border-gray-700 bg-black px-4 py-2.5 text-white outline-none focus:ring-1 focus:ring-gray-500"
             />
           </div>
@@ -83,8 +95,8 @@ const Login = () => {
               <input
                 type="checkbox"
                 id="rememberMe"
-                checked={formData.rememberMe}
-                onChange={handleChange}
+                checked={loginForm.rememberMe}
+                onChange={loginForm.handleChange}
                 className="h-4 w-4 rounded border-gray-600 text-gray-400 focus:ring-gray-700"
               />
               <label htmlFor="rememberMe" className="ml-2 block text-sm text-gray-300">
