@@ -2,21 +2,52 @@
 import { React, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Formik , useFormik } from "formik";
+import { Formik, useFormik } from "formik";
+import * as Yup from 'yup';
+import { Spiral } from 'ldrs/react'
+import 'ldrs/react/Spiral.css'
+
+const signupSchema = Yup.object().shape({
+  firstname: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required('First name is required'),
+  lastname: Yup.string()
+    .min(2, "Too Short!")
+    .max(50, "Too Long!")
+    .required('Last name is required'),
+  email: Yup.string().email('Invalid email').required('Email is required'),
+  password: Yup.string()
+    .required('Password is required')
+    .min(8, 'Password should be 8 chars minimum')
+    .matches(/[a-z]/, 'Lower case is required')
+    .matches(/[A-Z]/, 'Upper case is required')
+    .matches(/\W/, 'Special character is required'),
+  confirmpassword: Yup.string()
+    .required('Confirm password is required')
+    .oneOf([Yup.ref('password'), null], 'Password must match')
+});
 
 const SignUp = () => {
   const signupForm = useFormik({
-      initialValues:{
-        firstname:'',
-        lastname:'',
-        email:'',
-        password:'',
-        confirmpassword:''
-      },
-      onSubmit:(val)=>{console.log(val);
-        //send values to backend
-      }
-    })
+    initialValues: {
+      firstname: '',
+      lastname: '',
+      email: '',
+      password: '',
+      confirmpassword: ''
+    },
+    validationSchema: signupSchema,
+    onSubmit: (val, { resetForm, setSubmitting }) => {
+      console.log(val);
+      //send values to backend
+
+      setTimeout(() => {
+        resetForm();
+      }, 2000);
+    }
+  });
+
   return (
     <div className="bg-black text-white min-h-screen flex items-center justify-center p-4 pt-20 relative overflow-hidden">
       {/* Background Animation */}
@@ -44,30 +75,40 @@ const SignUp = () => {
         <form onSubmit={signupForm.handleSubmit} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label htmlFor="first-name" className="block text-sm font-semibold text-gray-300">
+              <label htmlFor="firstname" className="block text-sm font-semibold text-gray-300">
                 First Name
               </label>
               <motion.input
                 whileFocus={{ scale: 1.03 }}
                 type="text"
                 id="firstname"
+                name="firstname"
                 onChange={signupForm.handleChange}
+                onBlur={signupForm.handleBlur}
                 value={signupForm.values.firstname}
                 className="mt-1 w-full rounded-md border border-gray-700 bg-black px-3 py-1.5 text-white outline-none focus:ring-1 focus:ring-gray-500 text-sm"
               />
+              {signupForm.touched.firstname && signupForm.errors.firstname && (
+                <div className="text-red-500 text-xs mt-1">{signupForm.errors.firstname}</div>
+              )}
             </div>
             <div>
-              <label htmlFor="last-name" className="block text-sm font-semibold text-gray-300">
+              <label htmlFor="lastname" className="block text-sm font-semibold text-gray-300">
                 Last Name
               </label>
               <motion.input
                 whileFocus={{ scale: 1.03 }}
                 type="text"
                 id="lastname"
+                name="lastname"
                 onChange={signupForm.handleChange}
+                onBlur={signupForm.handleBlur}
                 value={signupForm.values.lastname}
                 className="mt-1 w-full rounded-md border border-gray-700 bg-black px-3 py-1.5 text-white outline-none focus:ring-1 focus:ring-gray-500 text-sm"
               />
+              {signupForm.touched.lastname && signupForm.errors.lastname && (
+                <div className="text-red-500 text-xs mt-1">{signupForm.errors.lastname}</div>
+              )}
             </div>
           </div>
           <div>
@@ -78,10 +119,15 @@ const SignUp = () => {
               whileFocus={{ scale: 1.03 }}
               type="email"
               id="email"
+              name="email"
               onChange={signupForm.handleChange}
-                value={signupForm.values.email}
+              onBlur={signupForm.handleBlur}
+              value={signupForm.values.email}
               className="mt-1 w-full rounded-md border border-gray-700 bg-black px-3 py-1.5 text-white outline-none focus:ring-1 focus:ring-gray-500 text-sm"
             />
+            {signupForm.touched.email && signupForm.errors.email && (
+              <div className="text-red-500 text-xs mt-1">{signupForm.errors.email}</div>
+            )}
           </div>
           <div>
             <label htmlFor="password" className="block text-sm font-semibold text-gray-300">
@@ -91,23 +137,33 @@ const SignUp = () => {
               whileFocus={{ scale: 1.03 }}
               type="password"
               id="password"
+              name="password"
               onChange={signupForm.handleChange}
-                value={signupForm.values.password}
+              onBlur={signupForm.handleBlur}
+              value={signupForm.values.password}
               className="mt-1 w-full rounded-md border border-gray-700 bg-black px-3 py-1.5 text-white outline-none focus:ring-1 focus:ring-gray-500 text-sm"
             />
+            {signupForm.touched.password && signupForm.errors.password && (
+              <div className="text-red-500 text-xs mt-1">{signupForm.errors.password}</div>
+            )}
           </div>
           <div>
-            <label htmlFor="confirm-password" className="block text-sm font-semibold text-gray-300">
+            <label htmlFor="confirmpassword" className="block text-sm font-semibold text-gray-300">
               Confirm Password
             </label>
             <motion.input
               whileFocus={{ scale: 1.03 }}
               type="password"
               id="confirmpassword"
+              name="confirmpassword"
               onChange={signupForm.handleChange}
-                value={signupForm.values.confirmpassword}
+              onBlur={signupForm.handleBlur}
+              value={signupForm.values.confirmpassword}
               className="mt-1 w-full rounded-md border border-gray-700 bg-black px-3 py-1.5 text-white outline-none focus:ring-1 focus:ring-gray-500 text-sm"
             />
+            {signupForm.touched.confirmpassword && signupForm.errors.confirmpassword && (
+              <div className="text-red-500 text-xs mt-1">{signupForm.errors.confirmpassword}</div>
+            )}
           </div>
           <div className="flex items-center">
             <motion.input
@@ -126,7 +182,16 @@ const SignUp = () => {
             type="submit"
             className="w-full rounded-md bg-gray-700 text-white px-3 py-2 font-semibold hover:bg-gray-600 transition text-sm"
           >
-            Create Account
+            {
+              signupForm.isSubmitting ? (
+                // Default values shown
+                  <Spiral
+                  size="25"
+                  speed="0.9"
+                  color="black" 
+                  />
+              ) : 'Create Account'
+            }
           </motion.button>
         </form>
         <div className="text-center mt-5">
@@ -137,7 +202,7 @@ const SignUp = () => {
               className="text-gray-200 underline cursor-pointer"
             >
               <Link href='/login'>
-              Log in
+                Log in
               </Link>
             </motion.span>
           </p>

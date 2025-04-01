@@ -2,39 +2,43 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Formik , useFormik } from "formik";
+import { useFormik } from "formik";
+import * as Yup from 'yup';
+import { Spiral } from 'ldrs/react'
+import 'ldrs/react/Spiral.css'
+
 
 const Login = () => {
   
-  // const [formData, setState] = useState({
-  //   username: "",
-  //   password: "",
-  //   rememberMe: false
-  // });
+  const loginSchema = Yup.object().shape({
+    username: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required('Username is required'),
+    password: Yup.string()
+      .required('Password is required')
+      .min(8, 'Password should be 8 chars minimum')
+      .matches(/[a-z]/,'Lower case is required')
+      .matches(/[A-Z]/,'Upper case is required')
+      .matches(/\W/,'Special character is required')
+  });
 
   const loginForm = useFormik({
     initialValues:{
       username:'',
       password:'',
+      rememberMe: false
     },
-    onSubmit:(val)=>{console.log(val);
+    validationSchema: loginSchema,
+    onSubmit:(val, {resetForm,setSubmitting})=>{
+      console.log(val);
       //send values to backend
+
+      setTimeout(()=>{
+        resetForm()
+      },2000)
     }
-  })
-
-  // const handleChange = (e) => {
-  //   const { id, value, checked, type } = e.target;
-  //   setState(prevState => ({
-  //     ...prevState,
-  //     [id]: type === "checkbox" ? checked : value
-  //   }));
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   // Here you would handle the login logic
-  //   console.log("Login attempt with:", formData);
-  // };
+  });
 
   return (
     <div className="bg-black text-white min-h-screen flex items-center justify-center p-4 relative overflow-hidden">
@@ -60,8 +64,8 @@ const Login = () => {
         <p className="text-gray-400 text-center mb-6">
           Welcome back! Please enter your credentials.
         </p>
-        {/* {Form} */}
-        <form onSubmit={signupForm.handleSubmit} className="space-y-5">
+        {/* Form */}
+        <form onSubmit={loginForm.handleSubmit} className="space-y-5">
           <div>
             <label htmlFor="username" className="block text-base font-semibold text-gray-300">
               Username
@@ -70,11 +74,15 @@ const Login = () => {
               whileFocus={{ scale: 1.03 }}
               type="text"
               id="username"
+              name="username"
               onChange={loginForm.handleChange}
+              onBlur={loginForm.handleBlur}
               value={loginForm.values.username}
-              required
               className="mt-2 w-full rounded-md border border-gray-700 bg-black px-4 py-2.5 text-white outline-none focus:ring-1 focus:ring-gray-500"
             />
+            {loginForm.touched.username && loginForm.errors.username && (
+              <div className="text-red-500 text-sm mt-1">{loginForm.errors.username}</div>
+            )}
           </div>
           <div>
             <label htmlFor="password" className="block text-base font-semibold text-gray-300">
@@ -84,10 +92,15 @@ const Login = () => {
               whileFocus={{ scale: 1.03 }}
               type="password"
               id="password"
+              name="password"
               onChange={loginForm.handleChange}
+              onBlur={loginForm.handleBlur}
               value={loginForm.values.password}
               className="mt-2 w-full rounded-md border border-gray-700 bg-black px-4 py-2.5 text-white outline-none focus:ring-1 focus:ring-gray-500"
             />
+            {loginForm.touched.password && loginForm.errors.password && (
+              <div className="text-red-500 text-sm mt-1">{loginForm.errors.password}</div>
+            )}
           </div>
           
           <div className="flex justify-between items-center">
@@ -95,7 +108,8 @@ const Login = () => {
               <input
                 type="checkbox"
                 id="rememberMe"
-                checked={loginForm.rememberMe}
+                name="rememberMe"
+                checked={loginForm.values.rememberMe}
                 onChange={loginForm.handleChange}
                 className="h-4 w-4 rounded border-gray-600 text-gray-400 focus:ring-gray-700"
               />
@@ -120,7 +134,14 @@ const Login = () => {
               type="submit"
               className="w-full rounded-md bg-gray-300 text-black px-5 py-2.5 font-semibold hover:bg-gray-400 transition"
             >
-              Login
+              {
+                loginForm.isSubmitting ? (// Default values shown
+                  <Spiral
+                    size="25"
+                    speed="0.9"
+                    color="black" 
+                  />) : "Login"
+              }
             </motion.button>
             <Link href="/signup" passHref legacyBehavior>
               <motion.a className="w-full">
