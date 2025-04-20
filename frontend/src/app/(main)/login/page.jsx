@@ -6,15 +6,13 @@ import { useFormik } from "formik";
 import * as Yup from 'yup';
 import { Spiral } from 'ldrs/react'
 import 'ldrs/react/Spiral.css'
-
+import axios from "axios";
+import toast from "react-hot-toast";
 
 const Login = () => {
   
   const loginSchema = Yup.object().shape({
-    username: Yup.string()
-      .min(2, "Too Short!")
-      .max(50, "Too Long!")
-      .required('Username is required'),
+    email: Yup.string().email('Invalid email').required('Email is required'),
     password: Yup.string()
       .required('Password is required')
       .min(8, 'Password should be 8 chars minimum')
@@ -25,18 +23,26 @@ const Login = () => {
 
   const loginForm = useFormik({
     initialValues:{
-      username:'',
-      password:'',
-      rememberMe: false
+      email:'',
+      password:''
     },
     validationSchema: loginSchema,
-    onSubmit:(val, {resetForm,setSubmitting})=>{
-      console.log(val);
+    onSubmit:(val, {resetForm})=>{
+      console.log('Form Submitted',val);
       //send values to backend
 
-      setTimeout(()=>{
-        resetForm()
-      },2000)
+      axios.post(`${process.env.NEXT_PUBLIC_API_URL}/user/authenticate`,val)
+            
+            .then((result) => {
+              console.log(result.data);
+              localStorage.setItem('user',result.data.token);
+              toast.success("login Successful");
+              resetForm()
+              
+            }).catch((err) => {
+              console.log(err);
+              toast.error("login failed.PLease check your credentials"); 
+            });
     }
   });
 
@@ -68,20 +74,20 @@ const Login = () => {
         <form onSubmit={loginForm.handleSubmit} className="space-y-5">
           <div>
             <label htmlFor="username" className="block text-base font-semibold text-gray-300">
-              Username
+              email
             </label>
             <motion.input
               whileFocus={{ scale: 1.03 }}
               type="text"
-              id="username"
-              name="username"
+              id="email"
+              name="email"
               onChange={loginForm.handleChange}
               onBlur={loginForm.handleBlur}
               value={loginForm.values.username}
               className="mt-2 w-full rounded-md border border-gray-700 bg-black px-4 py-2.5 text-white outline-none focus:ring-1 focus:ring-gray-500"
             />
-            {loginForm.touched.username && loginForm.errors.username && (
-              <div className="text-red-500 text-sm mt-1">{loginForm.errors.username}</div>
+            {loginForm.touched.email && loginForm.errors.email && (
+              <div className="text-red-500 text-sm mt-1">{loginForm.errors.email}</div>
             )}
           </div>
           <div>
@@ -109,8 +115,6 @@ const Login = () => {
                 type="checkbox"
                 id="rememberMe"
                 name="rememberMe"
-                checked={loginForm.values.rememberMe}
-                onChange={loginForm.handleChange}
                 className="h-4 w-4 rounded border-gray-600 text-gray-400 focus:ring-gray-700"
               />
               <label htmlFor="rememberMe" className="ml-2 block text-sm text-gray-300">
