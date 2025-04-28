@@ -45,7 +45,7 @@ module.exports = {
         <div className="space-y-6">
           {/* Header Section */}
           <div className="text-center space-y-4 mb-12">
-            <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-300 via-gray-200 to-gray-500 bg-clip-text text-transparent animate-pulse">
+            <h1 className="text-4xl pb-2 md:text-5xl font-bold bg-gradient-to-r from-gray-300 via-gray-200 to-gray-500 bg-clip-text text-transparent animate-pulse">
               AV Plugin for Tailwind CSS
             </h1>
             <p className="text-xl text-gray-400 max-w-3xl mx-auto">
