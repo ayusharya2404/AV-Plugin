@@ -541,7 +541,7 @@ module.exports = {
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/buttons/picture1.png"
+                              src="/buttons/Picture1.png"
                               alt="Animated buttons screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -624,7 +624,7 @@ Press Me
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/buttons/picture2.png"
+                              src="/buttons/Picture2.png"
                               alt="Animated button 2"
                               className="rounded-md border border-gray-700"
                             />
