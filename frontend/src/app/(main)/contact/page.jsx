@@ -35,7 +35,7 @@ const ContactUs = () => {
 
       setTimeout(() => {
         resetForm();
-      }, 2000);
+      }, 1000);
     }
   });
 

@@ -1,28 +1,15 @@
 const express = require('express');
-const Model = require('../models/ContactModel');
-require('dotenv').config();
 const router = express.Router();
+const Contact = require('../models/ContactModel');
 
-router.post('/add', (req, res) => {
-  console.log(req.body);
-
-  new Model(req.body).save()
-    .then((result) => {
-      res.status(200).json(result);
-    }).catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
-});
-
-router.get('/data', (req, res) => {
-  Model.find()
-    .then((result) => {
-      res.status(200).json(result);
-    }).catch((err) => {
-      console.log(err);
-      res.status(500).json(err);
-    });
+router.post('/contact', async (req, res) => {
+  try {
+    const contact = new Contact(req.body);
+    await contact.save();
+    res.status(201).json({ message: 'Contact saved!' });
+  } catch (err) {
+    res.status(400).json({ error: err.message });
+  }
 });
 
 module.exports = router;
