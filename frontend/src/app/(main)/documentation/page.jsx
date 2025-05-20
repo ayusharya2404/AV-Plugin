@@ -1860,7 +1860,7 @@ export default ProgressBar`}
                       Pre-designed text styles for headings, paragraphs, and special text treatments.
                     </p>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                    <div className="grid grid-cols-1 lg:grid-cols-1 gap-6 mb-8">
                       <div className="bg-gray-800 rounded-lg overflow-hidden">
                         <div className="p-5 border-b border-gray-700">
                           <h3 className="text-white font-semibold">Classy Font Styles</h3>
