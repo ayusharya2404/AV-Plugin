@@ -5,6 +5,8 @@ import { useFormik } from "formik";
 import * as Yup from 'yup';
 import { Spiral } from 'ldrs/react'
 import 'ldrs/react/Spiral.css'
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 const contactSchema = Yup.object().shape({
   firstname: Yup.string()
@@ -29,14 +31,23 @@ const ContactUs = () => {
       message: ''
     },
     validationSchema: contactSchema,
-    onSubmit: (val, { resetForm, setSubmitting }) => {
-      console.log(val);
-      //send values to backend
+    onSubmit: (values) => {
+            console.log('Form submitted:', values);
 
-      setTimeout(() => {
-        resetForm();
-      }, 1000);
-    }
+            axios.post(`${process.env.NEXT_PUBLIC_API_URL}/contact/submit`,values)
+            
+            .then((result) => {
+              console.log(result.data);
+              localStorage.setItem('user',result.data.token);
+              toast.success("login Successful");
+              
+            }).catch((err) => {
+              console.log(err);
+              toast.error("login failed.PLease check your credentials"); 
+            });
+            // Here you would typically handle authentication
+            // e.g., call an API to verify credentials
+        },
   });
 
   return (

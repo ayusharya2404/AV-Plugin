@@ -541,7 +541,7 @@ module.exports = {
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/placeholder.svg?height=200&width=300"
+                              src="/buttons/picture1.png"
                               alt="Animated buttons screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -624,7 +624,7 @@ Press Me
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/placeholder.svg?height=200&width=300"
+                              src="/buttons/picture2.png"
                               alt="Animated button 2"
                               className="rounded-md border border-gray-700"
                             />
@@ -806,7 +806,7 @@ Press Me
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/placeholder.svg?height=200&width=300"
+                              src="/inputbox/picture1.png"
                               alt="Text inputs screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -897,7 +897,7 @@ Press Me
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/placeholder.svg?height=200&width=300"
+                              src="/inputbox/picture2.png"
                               alt="Textarea inputs screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -1045,7 +1045,7 @@ Press Me
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/placeholder.svg?height=200&width=400"
+                              src="/statcard/picture1.png"
                               alt="Stat cards screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -1166,7 +1166,7 @@ Press Me
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/placeholder.svg?height=200&width=400"
+                              src="/statcard/picture2.png"
                               alt="Stat cards screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -1341,7 +1341,7 @@ Press Me
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/placeholder.svg?height=200&width=300"
+                              src="/checkbox/picture1.png"
                               alt="Checkbox components screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -1470,7 +1470,7 @@ Press Me
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/placeholder.svg?height=200&width=300"
+                              src="/radiobutton/picture1.png"
                               alt="Radio button components screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -1658,7 +1658,7 @@ Press Me
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/placeholder.svg?height=200&width=400"
+                              src="/progressbar/picture1.png"
                               alt="Progress bars screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -1868,7 +1868,7 @@ export default ProgressBar`}
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/placeholder.svg?height=200&width=300"
+                              src="/textstyles/picture1.png"
                               alt="Heading styles screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -2124,151 +2124,6 @@ export default TypographyShowcase;`}
                           </div>
                         </div>
                       </div>
-
-                      <div className="bg-gray-800 rounded-lg overflow-hidden">
-                        <div className="p-5 border-b border-gray-700">
-                          <h3 className="text-white font-semibold">av-text</h3>
-                        </div>
-                        <div className="p-5 bg-gray-900">
-                          <div className="flex justify-center mb-4">
-                            <img
-                              src="/placeholder.svg?height=200&width=300"
-                              alt="Text styles screenshot"
-                              className="rounded-md border border-gray-700"
-                            />
-                          </div>
-                        </div>
-                        <div className="bg-gray-900 px-5 py-3 border-t border-gray-700">
-                          <div className="flex justify-between items-center">
-                            <button
-                              onClick={() => toggleCode("text-styles")}
-                              className="text-gray-400 hover:text-white text-sm"
-                            >
-                              {showCode["text-styles"] ? "Hide" : "Show"} code
-                            </button>
-                            <button
-                              onClick={() =>
-                                copyToClipboard(
-                                  `<!-- Standard paragraph -->
-<p className="av-text">
-  This is a standard paragraph with comfortable line height and spacing.
-</p>
-
-<!-- Small text -->
-<p className="av-text-small av-text-light av-text-italic">
-  This is a smaller, lighter text with italics styling.
-</p>
-
-<!-- Wide tracking text -->
-<p className="av-text av-text-medium av-text-wide">
-  This text has wider letter spacing for emphasis.
-</p>
-
-<!-- Monospace text -->
-<p className="av-text-mono av-text-code">
-  This is monospaced text for code or technical content.
-</p>`,
-                                  "text-styles",
-                                )
-                              }
-                              className="text-gray-400 hover:text-white text-sm bg-gray-800 px-3 py-1 rounded-md"
-                            >
-                              {copiedStates["text-styles"] ? "Copied!" : "Copy"}
-                            </button>
-                          </div>
-                          {showCode["text-styles"] && (
-                            <div className="mt-3 overflow-x-auto">
-                              <pre className="text-gray-300 text-sm">
-                                <code>
-                                  {`<!-- Standard paragraph -->
-<p className="av-text">
-  This is a standard paragraph with comfortable line height and spacing.
-</p>
-
-<!-- Small text -->
-<p className="av-text-small av-text-light av-text-italic">
-  This is a smaller, lighter text with italics styling.
-</p>
-
-<!-- Wide tracking text -->
-<p className="av-text av-text-medium av-text-wide">
-  This text has wider letter spacing for emphasis.
-</p>
-
-<!-- Monospace text -->
-<p className="av-text-mono av-text-code">
-  This is monospaced text for code or technical content.
-</p>`}
-                                </code>
-                              </pre>
-                            </div>
-                          )}
-                        </div>
-                        <div className="p-5 bg-gray-800 border-t border-gray-700">
-                          <h4 className="text-white font-semibold mb-3">Text Utility Classes</h4>
-
-                          <div className="space-y-4">
-                            <div>
-                              <h5 className="text-white font-medium mb-2 text-sm">Base Classes</h5>
-                              <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
-                                <li>
-                                  <span className="text-gray-200">av-text</span>: Base text styling with comfortable
-                                  line height
-                                </li>
-                                <li>
-                                  <span className="text-gray-200">av-text-small</span>: Smaller text size
-                                </li>
-                                <li>
-                                  <span className="text-gray-200">av-text-mono</span>: Monospace font family
-                                </li>
-                              </ul>
-                            </div>
-
-                            <div>
-                              <h5 className="text-white font-medium mb-2 text-sm">Weight Modifiers</h5>
-                              <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
-                                <li>
-                                  <span className="text-gray-200">av-text-light</span>: Lighter font weight
-                                </li>
-                                <li>
-                                  <span className="text-gray-200">av-text-medium</span>: Medium font weight
-                                </li>
-                                <li>
-                                  <span className="text-gray-200">av-text-bold</span>: Bold font weight
-                                </li>
-                              </ul>
-                            </div>
-
-                            <div>
-                              <h5 className="text-white font-medium mb-2 text-sm">Style Modifiers</h5>
-                              <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
-                                <li>
-                                  <span className="text-gray-200">av-text-italic</span>: Italic text style
-                                </li>
-                                <li>
-                                  <span className="text-gray-200">av-text-wide</span>: Wider letter spacing
-                                </li>
-                                <li>
-                                  <span className="text-gray-200">av-text-code</span>: Code styling with background
-                                </li>
-                              </ul>
-                            </div>
-
-                            <div className="bg-gray-900 rounded-md p-4">
-                              <h5 className="text-white font-medium mb-2 text-sm">Combining Classes</h5>
-                              <p className="text-gray-400 text-sm">
-                                These utility classes can be combined to create various text styles. For example:
-                              </p>
-                              <pre className="text-gray-300 text-sm mt-2 bg-gray-800 p-2 rounded">
-                                <code>className="av-text-small av-text-bold av-text-wide"</code>
-                              </pre>
-                              <p className="text-gray-400 text-sm mt-2">
-                                This would create small, bold text with wider letter spacing.
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </>
                 )}
@@ -2287,7 +2142,7 @@ export default TypographyShowcase;`}
                       <div className="p-5 bg-gray-900">
                         <div className="flex justify-center mb-4">
                           <img
-                            src="/placeholder.svg?height=200&width=400"
+                            src="/customlayout/picture1.png"
                             alt="Animated shape cards screenshot"
                             className="rounded-md border border-gray-700"
                           />
