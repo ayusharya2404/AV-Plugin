@@ -17,6 +17,7 @@ app.use(cors({
 
 app.use(express.json());
 app.use('/user', UserRouter);
+app.use('/contact', ContactRouter);
 
 // endpoint or route
 app.get('/', (req, res) => {

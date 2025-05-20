@@ -28,16 +28,18 @@ const InstallationPage = () => {
   };
 
   const configCode = `// tailwind.config.js
+const plugin = require('tailwindcss/plugin')
+
 module.exports = {
-  theme: {
-    // ... your theme config
-  },
-  plugins: [
-    require('av-plugin')({
-      // plugin options here
-    })
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
-}`;
+  plugins: [
+    require('av-plugin'),
+  ]
+}
+`;
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-100 antialiased">

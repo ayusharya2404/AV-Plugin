@@ -4,7 +4,7 @@ import { useState } from "react"
 
 export default function AVPluginDocs() {
   const [activeTab, setActiveTab] = useState("components")
-  const [activeSubTab, setActiveSubTab] = useState("buttons")
+  const [activeSubTab, setActiveSubTab] = useState("overview")
   const [showCode, setShowCode] = useState({
     installation: false,
     usage: false,
@@ -85,64 +85,10 @@ export default function AVPluginDocs() {
     )
   }
 
-  // Code snippets for the showcase components
-  const codeSnippets = {
-    gradientButton: `<button className="px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-md hover:from-purple-600 hover:to-pink-600 transition-all font-medium">
-  Gradient Button
-</button>`,
-
-    statCard: `<div className="bg-gray-800 rounded-lg p-5">
-  <div className="flex items-center justify-between mb-4">
-    <h3 className="text-gray-300 font-medium">Total Users</h3>
-    <div className="bg-purple-500/20 p-2 rounded-md">
-      <User className="h-5 w-5 text-purple-500" />
-    </div>
-  </div>
-  <div className="text-3xl font-bold text-white mb-1">24,521</div>
-  <div className="flex items-center text-sm">
-    <span className="text-green-500 flex items-center">
-      <svg
-        className="h-3 w-3 mr-1"
-        xmlns="http://www.w3.org/2000/svg"
-        fill="none"
-        viewBox="0 0 24 24"
-        stroke="currentColor"
-      >
-        <path
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth={2}
-          d="M5 10l7-7m0 0l7 7m-7-7v18"
-        />
-      </svg>
-      12.5%
-    </span>
-    <span className="text-gray-400 ml-2">vs last month</span>
-  </div>
-</div>`,
-
-    formInput: `<div>
-  <label className="block text-gray-300 text-sm font-medium mb-2">Search</label>
-  <div className="relative">
-    <input
-      type="text"
-      className="w-full pl-10 pr-4 py-2 bg-gray-800 border border-gray-700 rounded-md text-gray-200 focus:ring-2 focus:ring-purple-600 focus:border-transparent transition-all"
-      placeholder="Search..."
-    />
-    <Search className="absolute left-3 top-2.5 h-5 w-5 text-gray-400" />
-  </div>
-</div>`,
-
-    animatedCard: `<div className="bg-gray-800 rounded-lg p-4 shadow-lg hover:scale-105 transition-transform duration-300">
-  <h4 className="text-white font-medium mb-2">Animated Card</h4>
-  <p className="text-gray-400 text-sm">This card smoothly scales on hover.</p>
-</div>`,
-  }
-
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-800 to-neutral-950 overflow-hidden text-gray-200">
-      {/* Main content - Added top margin (mt-16) to prevent nav bar overlap */}
-      <main className="max-w-6xl mx-auto py-8 px-4 md:px-8 mt-13">
+      {/* Main content - Fixed top margin (mt-16) to prevent nav bar overlap */}
+      <main className="max-w-6xl mx-auto py-8 px-4 md:px-8 mt-16">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
           {/* Sidebar */}
           <aside className="md:col-span-3">
@@ -299,8 +245,8 @@ export default function AVPluginDocs() {
                       <pre className="text-gray-300">
                         <code>
                           # Install with npm{"\n"}
-                          npm install avplugin-tailwindcss{"\n\n"}# Or with yarn{"\n"}
-                          yarn add avplugin-tailwindcss
+                          npm install av-plugin{"\n\n"}# Or with yarn{"\n"}
+                          yarn add av-plugin
                         </code>
                       </pre>
                     </div>
@@ -318,17 +264,18 @@ export default function AVPluginDocs() {
                   <div className="p-4 overflow-x-auto">
                     <pre className="text-gray-300">
                       <code>
-                        {`module.exports = {
-  // ...other config
-  plugins: [
-    require('avplugin-tailwindcss')({
-      // Optional configuration options
-      theme: 'dark',
-      responsive: true,
-    }),
-    // ...other plugins
+                        {`const plugin = require('tailwindcss/plugin')
+
+module.exports = {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
   ],
-}`}
+  plugins: [
+    require('av-plugin'),
+  ]
+}
+`}
                       </code>
                     </pre>
                   </div>
@@ -338,60 +285,234 @@ export default function AVPluginDocs() {
 
             {activeTab === "usage" && (
               <section>
-                <h2 className="text-white text-2xl font-bold mb-4">Basic Usage</h2>
                 <p className="text-gray-400 mb-6">
                   The AV Plugin provides a collection of utility classes that make it easy to create modern, responsive
                   interfaces with Tailwind CSS.
                 </p>
 
-                <h3 className="text-gray-300 text-xl font-semibold mb-3">Core Concepts</h3>
-                <p className="text-gray-400 mb-6">
-                  The plugin extends Tailwind's functionality with specialized utilities for advanced visual effects,
-                  animations, and interactive components.
-                </p>
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-8">
+                  {/* Sidebar */}
+                  <aside className="md:col-span-3">
+                    <nav className="sticky top-24 bg-gray-900 rounded-lg p-4">
+                      <h2 className="text-white text-lg font-medium mb-4">Know More About it</h2>
+                      <ul className="space-y-2">
+                        <li>
+                          <button
+                            onClick={() => setActiveSubTab("overview")}
+                            className={`w-full text-left px-3 py-2 rounded-md transition-colors ${
+                              activeSubTab === "overview" ? "bg-gray-800 text-white" : "text-gray-400 hover:text-white"
+                            }`}
+                          >
+                            Overview
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            onClick={() => setActiveSubTab("comparison")}
+                            className={`w-full text-left px-3 py-2 rounded-md transition-colors ${
+                              activeSubTab === "comparison"
+                                ? "bg-gray-800 text-white"
+                                : "text-gray-400 hover:text-white"
+                            }`}
+                          >
+                            Comparison
+                          </button>
+                        </li>
+                      </ul>
+                    </nav>
+                  </aside>
 
-                <div className="bg-gray-800 rounded-lg mb-6">
-                  <div className="flex items-center justify-between px-4 py-2 border-b border-gray-700">
-                    <span className="text-gray-300 font-medium">Example</span>
-                    <button onClick={() => toggleCode("usage")} className="text-gray-400 hover:text-white">
-                      {showCode.usage ? "Hide" : "Show"} code
-                    </button>
-                  </div>
-                  {showCode.usage && (
-                    <div className="p-4 overflow-x-auto">
-                      <pre className="text-gray-300">
-                        <code>
-                          {`<div className="av-card av-shadow-lg av-hover:scale-105">
-  <h3 className="av-text-gradient from-purple-400 to-pink-600">
-    Dynamic Card
-  </h3>
-  <p className="av-blur-sm av-hover:blur-none transition-all">
-    This content reveals on hover
-  </p>
-</div>`}
-                        </code>
-                      </pre>
-                    </div>
-                  )}
-                </div>
+                  {/* Content */}
+                  <div className="md:col-span-9">
+                    {activeSubTab === "overview" && (
+                      <section>
+                        <h2 className="text-white text-2xl font-bold mb-4">Overview</h2>
+                        <p className="text-gray-400 mb-6">
+                          The AV Plugin extends Tailwind CSS with a comprehensive set of utility classes and components
+                          designed for modern, interactive interfaces. It focuses on providing ready-to-use animations,
+                          interactive components, and advanced styling options that work seamlessly with React.
+                        </p>
 
-                <h3 className="text-gray-300 text-xl font-semibold mb-3">Available Utilities</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-                  <div className="bg-gray-800 p-4 rounded-lg">
-                    <h4 className="text-white font-medium mb-2">av-text-gradient</h4>
-                    <p className="text-gray-400 text-sm">Creates beautiful text gradients with customizable colors</p>
-                  </div>
-                  <div className="bg-gray-800 p-4 rounded-lg">
-                    <h4 className="text-white font-medium mb-2">av-shadow</h4>
-                    <p className="text-gray-400 text-sm">Enhanced shadow utilities with glow effects</p>
-                  </div>
-                  <div className="bg-gray-800 p-4 rounded-lg">
-                    <h4 className="text-white font-medium mb-2">av-animation</h4>
-                    <p className="text-gray-400 text-sm">Predefined animation sequences for common interactions</p>
-                  </div>
-                  <div className="bg-gray-800 p-4 rounded-lg">
-                    <h4 className="text-white font-medium mb-2">av-transform</h4>
-                    <p className="text-gray-400 text-sm">Extended transform utilities with advanced options</p>
+                        <h3 className="text-gray-300 text-xl font-semibold mb-3">Core Concepts</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                          <div className="bg-gray-800 p-5 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">Composable Components</h4>
+                            <p className="text-gray-400 text-sm">
+                              Each component is built with a modular approach, separating layout from color styling.
+                              This allows you to mix and match different layouts with different color schemes.
+                            </p>
+                          </div>
+                          <div className="bg-gray-800 p-5 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">Animation-First Design</h4>
+                            <p className="text-gray-400 text-sm">
+                              Interactive animations are built into components by default, with carefully crafted hover,
+                              focus, and active states that enhance user experience.
+                            </p>
+                          </div>
+                          <div className="bg-gray-800 p-5 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">Semantic Naming</h4>
+                            <p className="text-gray-400 text-sm">
+                              Components follow a consistent naming pattern (e.g., btn-layout-1, btn-color-blue) making
+                              it intuitive to understand and use the plugin's features.
+                            </p>
+                          </div>
+                          <div className="bg-gray-800 p-5 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">React Integration</h4>
+                            <p className="text-gray-400 text-sm">
+                              All components are designed with React in mind, working seamlessly with state-based UI
+                              changes and component composition patterns.
+                            </p>
+                          </div>
+                        </div>
+
+                        <h3 className="text-gray-300 text-xl font-semibold mb-3">Key Features</h3>
+                        <ul className="space-y-2 text-gray-400 mb-6">
+                          <li className="flex items-start">
+                            <span className="text-emerald-400 mr-2">✓</span>
+                            <span>Interactive buttons with multiple layout and color variants</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="text-emerald-400 mr-2">✓</span>
+                            <span>Animated shape cards with hover effects and geometric elements</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="text-emerald-400 mr-2">✓</span>
+                            <span>Advanced typography system with gradient, outline, and split headings</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="text-emerald-400 mr-2">✓</span>
+                            <span>Customizable form elements with focus states and animations</span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="text-emerald-400 mr-2">✓</span>
+                            <span>
+                              Progress bars with various styles including gradient, striped, and stepped variants
+                            </span>
+                          </li>
+                          <li className="flex items-start">
+                            <span className="text-emerald-400 mr-2">✓</span>
+                            <span>Stat cards with flexible layouts and color schemes</span>
+                          </li>
+                        </ul>
+                      </section>
+                    )}
+
+                    {activeSubTab === "comparison" && (
+                      <section>
+                        <h2 className="text-white text-2xl font-bold mb-4">Comparison with Other Plugins</h2>
+                        <p className="text-gray-400 mb-6">
+                          The AV Plugin offers several advantages over other popular Tailwind CSS plugins. Here's how it
+                          compares:
+                        </p>
+
+                        <div className="overflow-x-auto mb-8">
+                          <table className="w-full text-sm text-left">
+                            <thead className="text-gray-300 border-b border-gray-700">
+                              <tr>
+                                <th className="px-4 py-3">Feature</th>
+                                <th className="px-4 py-3">AV Plugin</th>
+                                <th className="px-4 py-3">DaisyUI</th>
+                                <th className="px-4 py-3">Animation Plugins</th>
+                                <th className="px-4 py-3">Layout Plugins</th>
+                                <th className="px-4 py-3">Typography Plugins</th>
+                              </tr>
+                            </thead>
+                            <tbody className="divide-y divide-gray-700">
+                              <tr className="bg-gray-800">
+                                <td className="px-4 py-3 font-medium">Animation Integration</td>
+                                <td className="px-4 py-3 text-emerald-400">Built-in with components</td>
+                                <td className="px-4 py-3 text-gray-400">Limited</td>
+                                <td className="px-4 py-3 text-gray-400">Standalone only</td>
+                                <td className="px-4 py-3 text-gray-400">Minimal</td>
+                                <td className="px-4 py-3 text-gray-400">None</td>
+                              </tr>
+                              <tr>
+                                <td className="px-4 py-3 font-medium">Interactive States</td>
+                                <td className="px-4 py-3 text-emerald-400">Comprehensive hover/focus/active</td>
+                                <td className="px-4 py-3 text-gray-400">Basic states</td>
+                                <td className="px-4 py-3 text-gray-400">Animation-only</td>
+                                <td className="px-4 py-3 text-gray-400">Layout-focused</td>
+                                <td className="px-4 py-3 text-gray-400">Static only</td>
+                              </tr>
+                              <tr className="bg-gray-800">
+                                <td className="px-4 py-3 font-medium">Component Structure</td>
+                                <td className="px-4 py-3 text-emerald-400">Layout/color separation</td>
+                                <td className="px-4 py-3 text-gray-400">Monolithic components</td>
+                                <td className="px-4 py-3 text-gray-400">Animation utilities only</td>
+                                <td className="px-4 py-3 text-gray-400">Grid systems only</td>
+                                <td className="px-4 py-3 text-gray-400">Text styling only</td>
+                              </tr>
+                              <tr>
+                                <td className="px-4 py-3 font-medium">React Integration</td>
+                                <td className="px-4 py-3 text-emerald-400">Optimized for React</td>
+                                <td className="px-4 py-3 text-gray-400">Framework agnostic</td>
+                                <td className="px-4 py-3 text-gray-400">Framework agnostic</td>
+                                <td className="px-4 py-3 text-gray-400">Framework agnostic</td>
+                                <td className="px-4 py-3 text-gray-400">Framework agnostic</td>
+                              </tr>
+                              <tr className="bg-gray-800">
+                                <td className="px-4 py-3 font-medium">Advanced Typography</td>
+                                <td className="px-4 py-3 text-emerald-400">Gradient, outline, split headings</td>
+                                <td className="px-4 py-3 text-gray-400">Basic typography</td>
+                                <td className="px-4 py-3 text-gray-400">None</td>
+                                <td className="px-4 py-3 text-gray-400">None</td>
+                                <td className="px-4 py-3 text-gray-400">Standard typography</td>
+                              </tr>
+                              <tr>
+                                <td className="px-4 py-3 font-medium">Custom Animations</td>
+                                <td className="px-4 py-3 text-emerald-400">12+ custom keyframes</td>
+                                <td className="px-4 py-3 text-gray-400">Limited animations</td>
+                                <td className="px-4 py-3 text-gray-400">Generic animations</td>
+                                <td className="px-4 py-3 text-gray-400">None</td>
+                                <td className="px-4 py-3 text-gray-400">None</td>
+                              </tr>
+                              <tr className="bg-gray-800">
+                                <td className="px-4 py-3 font-medium">Geometric Shapes</td>
+                                <td className="px-4 py-3 text-emerald-400">Built-in shape components</td>
+                                <td className="px-4 py-3 text-gray-400">None</td>
+                                <td className="px-4 py-3 text-gray-400">None</td>
+                                <td className="px-4 py-3 text-gray-400">None</td>
+                                <td className="px-4 py-3 text-gray-400">None</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+
+                        <h3 className="text-gray-300 text-xl font-semibold mb-3">Key Advantages</h3>
+                        <div className="space-y-4 mb-6">
+                          <div className="bg-gray-800 p-5 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">1. Integrated Animation System</h4>
+                            <p className="text-gray-400 text-sm">
+                              Unlike standalone animation plugins, AV Plugin integrates animations directly into
+                              components, with hover-triggered animations, interactive states, and geometric shape
+                              animations that work together seamlessly.
+                            </p>
+                          </div>
+                          <div className="bg-gray-800 p-5 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">2. Separation of Layout and Color</h4>
+                            <p className="text-gray-400 text-sm">
+                              The plugin's unique approach separates layout (btn-layout-1) from color styling
+                              (btn-color-blue), allowing for more flexible component composition than monolithic
+                              component libraries like DaisyUI.
+                            </p>
+                          </div>
+                          <div className="bg-gray-800 p-5 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">3. Advanced Typography System</h4>
+                            <p className="text-gray-400 text-sm">
+                              Goes beyond standard typography plugins with gradient text, outline text, split-colored
+                              headings, and specialized text treatments like stylish quotes and elegant lists.
+                            </p>
+                          </div>
+                          <div className="bg-gray-800 p-5 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">4. React-Optimized Components</h4>
+                            <p className="text-gray-400 text-sm">
+                              All components are designed with React's component model in mind, making them easier to
+                              integrate with state management and interactive UI patterns common in React applications.
+                            </p>
+                          </div>
+                        </div>
+                      </section>
+                    )}
                   </div>
                 </div>
               </section>
@@ -420,7 +541,7 @@ export default function AVPluginDocs() {
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/buttons/Picture1.png"
+                              src="/placeholder.svg?height=200&width=300"
                               alt="Animated buttons screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -460,6 +581,40 @@ Press Me
                             </div>
                           )}
                         </div>
+                        <div className="p-5 bg-gray-800 border-t border-gray-700">
+                          <h4 className="text-white font-semibold mb-3">Button Layout 1 Features</h4>
+                          <ul className="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                            <li>Smooth scale and rotate effect on hover</li>
+                            <li>Subtle scale-down effect on click</li>
+                            <li>Custom focus state with ring outline</li>
+                            <li>Hover overlay effect with opacity transition</li>
+                            <li>Compatible with all button color variants</li>
+                          </ul>
+
+                          <div className="mt-4 bg-gray-900 rounded-md p-4">
+                            <h5 className="text-white font-medium mb-2 text-sm">Implementation Details</h5>
+                            <table className="w-full text-sm">
+                              <tbody>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Padding</td>
+                                  <td className="py-2 text-gray-300">theme("spacing.5")</td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Border Radius</td>
+                                  <td className="py-2 text-gray-300">theme("borderRadius.md")</td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Hover Transform</td>
+                                  <td className="py-2 text-gray-300">scale(1.05) rotate(1deg)</td>
+                                </tr>
+                                <tr>
+                                  <td className="py-2 pr-4 text-gray-400">Active Transform</td>
+                                  <td className="py-2 text-gray-300">scale(0.95)</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
                       </div>
 
                       <div className="bg-gray-800 rounded-lg overflow-hidden">
@@ -468,7 +623,11 @@ Press Me
                         </div>
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
-                            <img src="/buttons/Picture2.png" className="rounded-md border border-gray-700" />
+                            <img
+                              src="/placeholder.svg?height=200&width=300"
+                              alt="Animated button 2"
+                              className="rounded-md border border-gray-700"
+                            />
                           </div>
                         </div>
                         <div className="bg-gray-900 px-5 py-3 border-t border-gray-700">
@@ -507,6 +666,126 @@ Press Me
                             </div>
                           )}
                         </div>
+                        <div className="p-5 bg-gray-800 border-t border-gray-700">
+                          <h4 className="text-white font-semibold mb-3">Button Layout 2 Features</h4>
+                          <ul className="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                            <li>Elegant floating effect on hover</li>
+                            <li>Circular design with border animation</li>
+                            <li>Scale-down effect on click</li>
+                            <li>Custom focus state with ring outline</li>
+                            <li>Animated border expansion on hover</li>
+                          </ul>
+
+                          <div className="mt-4 bg-gray-900 rounded-md p-4">
+                            <h5 className="text-white font-medium mb-2 text-sm">Implementation Details</h5>
+                            <table className="w-full text-sm">
+                              <tbody>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Border Style</td>
+                                  <td className="py-2 text-gray-300">2px solid</td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Border Radius</td>
+                                  <td className="py-2 text-gray-300">theme("borderRadius.full")</td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Hover Transform</td>
+                                  <td className="py-2 text-gray-300">translateY(-0.25rem)</td>
+                                </tr>
+                                <tr>
+                                  <td className="py-2 pr-4 text-gray-400">Border Animation</td>
+                                  <td className="py-2 text-gray-300">scale(1.05) with opacity transition</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gray-800 rounded-lg overflow-hidden mb-8">
+                      <div className="p-5 border-b border-gray-700">
+                        <h3 className="text-white font-semibold">Available Button Color Variants</h3>
+                      </div>
+                      <div className="p-5">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                          <div className="bg-gray-900 p-4 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">btn-color-blue</h4>
+                            <p className="text-gray-400 text-sm">Blue background with white text, darkens on hover</p>
+                          </div>
+                          <div className="bg-gray-900 p-4 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">btn-color-purple</h4>
+                            <p className="text-gray-400 text-sm">
+                              Purple outline that fills on hover with color change
+                            </p>
+                          </div>
+                          <div className="bg-gray-900 p-4 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">btn-color-green</h4>
+                            <p className="text-gray-400 text-sm">Green to emerald gradient with white text</p>
+                          </div>
+                          <div className="bg-gray-900 p-4 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">btn-color-red</h4>
+                            <p className="text-gray-400 text-sm">Red background with white text, darkens on hover</p>
+                          </div>
+                          <div className="bg-gray-900 p-4 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">btn-color-emerald</h4>
+                            <p className="text-gray-400 text-sm">
+                              Black with emerald text that inverts on hover with glow
+                            </p>
+                          </div>
+                          <div className="bg-gray-900 p-4 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">btn-color-indigo</h4>
+                            <p className="text-gray-400 text-sm">
+                              Indigo background with white text and hover lightening
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gray-800 rounded-lg overflow-hidden mb-8">
+                      <div className="p-5 border-b border-gray-700">
+                        <h3 className="text-white font-semibold">Additional Button Layouts</h3>
+                      </div>
+                      <div className="p-5">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="bg-gray-900 p-4 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">btn-layout-3</h4>
+                            <p className="text-gray-400 text-sm mb-2">Button with shine animation effect on hover</p>
+                            <ul className="list-disc list-inside text-gray-400 text-xs">
+                              <li>Animated shine effect that moves across the button</li>
+                              <li>Push-down effect on click</li>
+                              <li>Enhanced shadow on hover</li>
+                            </ul>
+                          </div>
+                          <div className="bg-gray-900 p-4 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">btn-layout-4</h4>
+                            <p className="text-gray-400 text-sm mb-2">Uppercase button with pulse animation</p>
+                            <ul className="list-disc list-inside text-gray-400 text-xs">
+                              <li>Continuous pulse animation that stops on hover</li>
+                              <li>Floating effect on hover</li>
+                              <li>Animated dot indicator in corner</li>
+                            </ul>
+                          </div>
+                          <div className="bg-gray-900 p-4 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">btn-layout-5</h4>
+                            <p className="text-gray-400 text-sm mb-2">Button with border animation on hover</p>
+                            <ul className="list-disc list-inside text-gray-400 text-xs">
+                              <li>Animated border that appears on hover</li>
+                              <li>Wider letter spacing for emphasis</li>
+                              <li>Shadow appears on hover</li>
+                            </ul>
+                          </div>
+                          <div className="bg-gray-900 p-4 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">btn-layout-6</h4>
+                            <p className="text-gray-400 text-sm mb-2">Button with ripple effect on click</p>
+                            <ul className="list-disc list-inside text-gray-400 text-xs">
+                              <li>Circular ripple animation on click</li>
+                              <li>Smooth color transition</li>
+                              <li>Consistent shadow effect</li>
+                            </ul>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </>
@@ -527,7 +806,7 @@ Press Me
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/inputbox/Picture1.png"
+                              src="/placeholder.svg?height=200&width=300"
                               alt="Text inputs screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -575,6 +854,40 @@ Press Me
                             </div>
                           )}
                         </div>
+                        <div className="p-5 bg-gray-800 border-t border-gray-700">
+                          <h4 className="text-white font-semibold mb-3">Input Glow Features</h4>
+                          <ul className="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                            <li>Elegant glow effect on focus</li>
+                            <li>Subtle shadow that enhances on hover</li>
+                            <li>Background color transition from gray to white</li>
+                            <li>Teal accent color for focus state</li>
+                            <li>Placeholder text color changes on focus</li>
+                          </ul>
+
+                          <div className="mt-4 bg-gray-900 rounded-md p-4">
+                            <h5 className="text-white font-medium mb-2 text-sm">Implementation Details</h5>
+                            <table className="w-full text-sm">
+                              <tbody>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Default Background</td>
+                                  <td className="py-2 text-gray-300">theme("colors.gray.50")</td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Focus Ring</td>
+                                  <td className="py-2 text-gray-300">4px teal-300</td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Border Radius</td>
+                                  <td className="py-2 text-gray-300">theme("borderRadius.lg")</td>
+                                </tr>
+                                <tr>
+                                  <td className="py-2 pr-4 text-gray-400">Hover Effect</td>
+                                  <td className="py-2 text-gray-300">White background with larger shadow</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
                       </div>
 
                       <div className="bg-gray-800 rounded-lg overflow-hidden">
@@ -584,7 +897,7 @@ Press Me
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/inputbox/Picture2.png"
+                              src="/placeholder.svg?height=200&width=300"
                               alt="Textarea inputs screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -626,6 +939,92 @@ Press Me
                             </div>
                           )}
                         </div>
+                        <div className="p-5 bg-gray-800 border-t border-gray-700">
+                          <h4 className="text-white font-semibold mb-3">Input Error Features</h4>
+                          <ul className="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                            <li>Red-themed error state with visual indicators</li>
+                            <li>Pulsing animation to draw attention</li>
+                            <li>Animation stops on hover for better usability</li>
+                            <li>Red placeholder text for consistent error indication</li>
+                            <li>Enhanced focus state with red ring</li>
+                          </ul>
+
+                          <div className="mt-4 bg-gray-900 rounded-md p-4">
+                            <h5 className="text-white font-medium mb-2 text-sm">Implementation Details</h5>
+                            <table className="w-full text-sm">
+                              <tbody>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Border Style</td>
+                                  <td className="py-2 text-gray-300">2px solid red-300</td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Background</td>
+                                  <td className="py-2 text-gray-300">theme("colors.red.50")</td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Animation</td>
+                                  <td className="py-2 text-gray-300">pulse 2s infinite</td>
+                                </tr>
+                                <tr>
+                                  <td className="py-2 pr-4 text-gray-400">Focus Ring</td>
+                                  <td className="py-2 text-gray-300">2px red-500</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gray-800 rounded-lg overflow-hidden mb-8">
+                      <div className="p-5 border-b border-gray-700">
+                        <h3 className="text-white font-semibold">Additional Input Variants</h3>
+                      </div>
+                      <div className="p-5">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="bg-gray-900 p-4 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">input-standard</h4>
+                            <p className="text-gray-400 text-sm mb-2">
+                              Clean, standard input with subtle hover effects
+                            </p>
+                            <ul className="list-disc list-inside text-gray-400 text-xs">
+                              <li>Blue accent color on focus</li>
+                              <li>Border color transition on hover</li>
+                              <li>Rounded corners with medium radius</li>
+                            </ul>
+                          </div>
+                          <div className="bg-gray-900 p-4 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">input-underline</h4>
+                            <p className="text-gray-400 text-sm mb-2">Minimalist input with only bottom border</p>
+                            <ul className="list-disc list-inside text-gray-400 text-xs">
+                              <li>Transparent background with subtle hover effect</li>
+                              <li>Purple accent color on focus</li>
+                              <li>Placeholder text color changes on focus</li>
+                            </ul>
+                          </div>
+                          <div className="bg-gray-900 p-4 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">input-search</h4>
+                            <p className="text-gray-400 text-sm mb-2">
+                              Search-optimized input with left padding for icon
+                            </p>
+                            <ul className="list-disc list-inside text-gray-400 text-xs">
+                              <li>Rounded pill design</li>
+                              <li>Yellow accent color on focus</li>
+                              <li>Shadow effect that enhances on hover</li>
+                              <li>Inner shadow on focus for depth</li>
+                            </ul>
+                          </div>
+                          <div className="bg-gray-900 p-4 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">input-expand</h4>
+                            <p className="text-gray-400 text-sm mb-2">Input that expands on focus with scale effect</p>
+                            <ul className="list-disc list-inside text-gray-400 text-xs">
+                              <li>Responsive width that adapts to screen size</li>
+                              <li>Subtle scale effect on hover</li>
+                              <li>Larger scale and shadow on focus</li>
+                              <li>Background color transition from gray to white</li>
+                            </ul>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </>
@@ -646,7 +1045,7 @@ Press Me
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/statcard/Picture1.png"
+                              src="/placeholder.svg?height=200&width=400"
                               alt="Stat cards screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -718,18 +1117,56 @@ Press Me
                             </div>
                           )}
                         </div>
+                        <div className="p-5 bg-gray-800 border-t border-gray-700">
+                          <h4 className="text-white font-semibold mb-3">Primary Stat Card Features</h4>
+                          <ul className="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                            <li>Blue-themed design with left border accent</li>
+                            <li>Flexible layout with icon container</li>
+                            <li>Specialized components for title, value, and change indicators</li>
+                            <li>Shadow effect for depth</li>
+                            <li>Rounded corners for modern appearance</li>
+                          </ul>
+
+                          <div className="mt-4 bg-gray-900 rounded-md p-4">
+                            <h5 className="text-white font-medium mb-2 text-sm">Component Structure</h5>
+                            <table className="w-full text-sm">
+                              <tbody>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Card Base</td>
+                                  <td className="py-2 text-gray-300">statcard-primary</td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Title</td>
+                                  <td className="py-2 text-gray-300">statcard-title-primary</td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Value</td>
+                                  <td className="py-2 text-gray-300">statcard-value-primary</td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Negative Change</td>
+                                  <td className="py-2 text-gray-300">statcard-change-negative-secondary</td>
+                                </tr>
+                                <tr>
+                                  <td className="py-2 pr-4 text-gray-400">Icon Container</td>
+                                  <td className="py-2 text-gray-300">statcard-icon-secondary</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
                       </div>
                     </div>
 
                     <div className="grid grid-cols-1 gap-6 mb-8">
                       <div className="bg-gray-800 rounded-lg overflow-hidden">
                         <div className="p-5 border-b border-gray-700">
-                          <h3 className="text-white font-semibold">StatCard 1</h3>
+                          <h3 className="text-white font-semibold">StatCard 2</h3>
                         </div>
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/statcard/Picture2.png"
+                              src="/placeholder.svg?height=200&width=400"
                               alt="Stat cards screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -801,6 +1238,91 @@ Press Me
                             </div>
                           )}
                         </div>
+                        <div className="p-5 bg-gray-800 border-t border-gray-700">
+                          <h4 className="text-white font-semibold mb-3">Danger Stat Card with Mixed Components</h4>
+                          <p className="text-gray-400 text-sm mb-3">
+                            This example demonstrates how you can mix and match different component variants to create
+                            custom stat cards.
+                          </p>
+
+                          <div className="mt-4 bg-gray-900 rounded-md p-4">
+                            <h5 className="text-white font-medium mb-2 text-sm">Mixed Component Structure</h5>
+                            <table className="w-full text-sm">
+                              <tbody>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Card Base</td>
+                                  <td className="py-2 text-gray-300">statcard-danger (gradient background)</td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Title</td>
+                                  <td className="py-2 text-gray-300">statcard-title-secondary (white text)</td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Value</td>
+                                  <td className="py-2 text-gray-300">statcard-value-warning (amber accent)</td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">Positive Change</td>
+                                  <td className="py-2 text-gray-300">statcard-change-positive-danger (light green)</td>
+                                </tr>
+                                <tr>
+                                  <td className="py-2 pr-4 text-gray-400">Icon Container</td>
+                                  <td className="py-2 text-gray-300">statcard-icon-warning (amber background)</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gray-800 rounded-lg overflow-hidden mb-8">
+                      <div className="p-5 border-b border-gray-700">
+                        <h3 className="text-white font-semibold">Available Stat Card Variants</h3>
+                      </div>
+                      <div className="p-5">
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="bg-gray-900 p-4 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">Card Base Variants</h4>
+                            <ul className="list-disc list-inside text-gray-400 text-sm space-y-1">
+                              <li>
+                                <span className="text-gray-300">statcard-primary</span>: Blue accent with left border
+                              </li>
+                              <li>
+                                <span className="text-gray-300">statcard-secondary</span>: Purple to indigo gradient
+                              </li>
+                              <li>
+                                <span className="text-gray-300">statcard-secondary</span>: Purple to indigo gradient
+                              </li>
+                              <li>
+                                <span className="text-gray-300">statcard-success</span>: White with hover shadow effect
+                              </li>
+                              <li>
+                                <span className="text-gray-300">statcard-warning</span>: Amber themed with rounded
+                                corners
+                              </li>
+                              <li>
+                                <span className="text-gray-300">statcard-danger</span>: Red to pink gradient
+                              </li>
+                            </ul>
+                          </div>
+                          <div className="bg-gray-900 p-4 rounded-lg">
+                            <h4 className="text-white font-medium mb-2">Component Variants</h4>
+                            <p className="text-gray-400 text-sm mb-2">
+                              Each card base has matching component variants:
+                            </p>
+                            <ul className="list-disc list-inside text-gray-400 text-sm space-y-1">
+                              <li>
+                                Title components (e.g., <span className="text-gray-300">statcard-title-primary</span>)
+                              </li>
+                              <li>
+                                Value components (e.g., <span className="text-gray-300">statcard-value-primary</span>)
+                              </li>
+                              <li>Change indicators (positive and negative)</li>
+                              <li>Icon containers with matching styles</li>
+                            </ul>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </>
@@ -819,7 +1341,7 @@ Press Me
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/checkbox/Picture1.png"
+                              src="/placeholder.svg?height=200&width=300"
                               alt="Checkbox components screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -897,6 +1419,39 @@ Press Me
                             </div>
                           )}
                         </div>
+                        <div className="p-5 bg-gray-800 border-t border-gray-700">
+                          <h4 className="text-white font-semibold mb-3">Checkbox Component Features</h4>
+                          <ul className="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                            <li>Four distinct variants with different colors and behaviors</li>
+                            <li>Interactive hover effects with smooth transitions</li>
+                            <li>Custom focus states with matching ring colors</li>
+                            <li>Consistent sizing with responsive scaling</li>
+                          </ul>
+
+                          <div className="mt-4 bg-gray-900 rounded-md p-4">
+                            <h5 className="text-white font-medium mb-2 text-sm">Checkbox Variants</h5>
+                            <table className="w-full text-sm">
+                              <tbody>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">checkbox-primary</td>
+                                  <td className="py-2 text-gray-300">Blue accent with scale effect on hover</td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">checkbox-success</td>
+                                  <td className="py-2 text-gray-300">Green accent with rotate effect on hover</td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">checkbox-warning</td>
+                                  <td className="py-2 text-gray-300">Yellow accent with brightness filter on hover</td>
+                                </tr>
+                                <tr>
+                                  <td className="py-2 pr-4 text-gray-400">checkbox-error</td>
+                                  <td className="py-2 text-gray-300">Red accent with larger scale effect on hover</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </>
@@ -915,7 +1470,7 @@ Press Me
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/radiobutton/Picture1.png"
+                              src="/placeholder.svg?height=200&width=300"
                               alt="Radio button components screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -1035,6 +1590,56 @@ Press Me
                             </div>
                           )}
                         </div>
+                        <div className="p-5 bg-gray-800 border-t border-gray-700">
+                          <h4 className="text-white font-semibold mb-3">Radio Button Features</h4>
+                          <p className="text-gray-400 text-sm mb-3">
+                            These custom radio buttons use the appearance: none property to completely customize their
+                            look and feel.
+                          </p>
+
+                          <div className="mt-4 bg-gray-900 rounded-md p-4">
+                            <h5 className="text-white font-medium mb-2 text-sm">Radio Button Variants</h5>
+                            <table className="w-full text-sm">
+                              <tbody>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">radio-primary</td>
+                                  <td className="py-2 text-gray-300">
+                                    Blue border with blue fill when checked, scale effect on hover
+                                  </td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">radio-success</td>
+                                  <td className="py-2 text-gray-300">
+                                    Green border with green fill when checked, pulsing animation
+                                  </td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">radio-warning</td>
+                                  <td className="py-2 text-gray-300">
+                                    Yellow border with yellow fill when checked, rotate effect on hover
+                                  </td>
+                                </tr>
+                                <tr>
+                                  <td className="py-2 pr-4 text-gray-400">radio-error</td>
+                                  <td className="py-2 text-gray-300">
+                                    Red border with red fill when checked, scale effect on hover
+                                  </td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+
+                          <div className="mt-4 bg-gray-900 rounded-md p-4">
+                            <h5 className="text-white font-medium mb-2 text-sm">Implementation Details</h5>
+                            <ul className="list-disc list-inside text-gray-300 space-y-2 text-sm">
+                              <li>Uses appearance: none to remove default browser styling</li>
+                              <li>Custom border and background colors for each variant</li>
+                              <li>Conditional styling for :checked state</li>
+                              <li>Unique hover effects for each variant</li>
+                              <li>Smooth transitions for all interactive states</li>
+                            </ul>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </>
@@ -1053,7 +1658,7 @@ Press Me
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/progressbar/Picture1.png"
+                              src="/placeholder.svg?height=200&width=400"
                               alt="Progress bars screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -1173,6 +1778,76 @@ export default ProgressBar`}
                             </div>
                           )}
                         </div>
+                        <div className="p-5 bg-gray-800 border-t border-gray-700">
+                          <h4 className="text-white font-semibold mb-3">Progress Bar Variants</h4>
+
+                          <div className="space-y-6">
+                            <div className="bg-gray-900 rounded-md p-4">
+                              <h5 className="text-white font-medium mb-2">1. Gradient Progress Bar</h5>
+                              <p className="text-gray-400 text-sm mb-3">
+                                Smooth gradient progress bar with rounded corners and inner shadow.
+                              </p>
+                              <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                                <li>Blue to purple gradient fill</li>
+                                <li>Scale effect on hover</li>
+                                <li>Brightness filter on hover</li>
+                                <li>Absolute positioned label</li>
+                              </ul>
+                            </div>
+
+                            <div className="bg-gray-900 rounded-md p-4">
+                              <h5 className="text-white font-medium mb-2">2. Striped Progress Bar</h5>
+                              <p className="text-gray-400 text-sm mb-3">
+                                Progress bar with animated diagonal stripes for active appearance.
+                              </p>
+                              <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                                <li>Green background with diagonal stripes</li>
+                                <li>Continuous animation of stripes</li>
+                                <li>Darkens on hover</li>
+                                <li>Centered label with full width</li>
+                              </ul>
+                            </div>
+
+                            <div className="bg-gray-900 rounded-md p-4">
+                              <h5 className="text-white font-medium mb-2">3. Neon Progress Bar</h5>
+                              <p className="text-gray-400 text-sm mb-3">
+                                Glowing progress bar with pulsing animation effect.
+                              </p>
+                              <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                                <li>Cyan glow effect with box-shadow</li>
+                                <li>Pulsing animation for emphasis</li>
+                                <li>Brighter glow on hover</li>
+                                <li>Matching colored label below</li>
+                              </ul>
+                            </div>
+
+                            <div className="bg-gray-900 rounded-md p-4">
+                              <h5 className="text-white font-medium mb-2">4. Stepped Progress Bar</h5>
+                              <p className="text-gray-400 text-sm mb-3">
+                                Segmented progress bar showing distinct steps in a process.
+                              </p>
+                              <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                                <li>Flex layout with equal segments</li>
+                                <li>Different states: completed, current, incomplete</li>
+                                <li>Current step has pulsing animation</li>
+                                <li>Hover effects for each segment</li>
+                              </ul>
+                            </div>
+
+                            <div className="bg-gray-900 rounded-md p-4">
+                              <h5 className="text-white font-medium mb-2">5. Minimal Progress Bar</h5>
+                              <p className="text-gray-400 text-sm mb-3">
+                                Slim, elegant progress bar with loading animation.
+                              </p>
+                              <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                                <li>Very thin height for minimal appearance</li>
+                                <li>Indigo fill with smooth transition</li>
+                                <li>Animated loading dots effect</li>
+                                <li>Subtle label below</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </>
@@ -1188,12 +1863,12 @@ export default ProgressBar`}
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
                       <div className="bg-gray-800 rounded-lg overflow-hidden">
                         <div className="p-5 border-b border-gray-700">
-                          <h3 className="text-white font-semibold">av-heading</h3>
+                          <h3 className="text-white font-semibold">Classy Font Styles</h3>
                         </div>
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/placeholder.svg?height=200&width=400"
+                              src="/placeholder.svg?height=200&width=300"
                               alt="Heading styles screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -1210,25 +1885,81 @@ export default ProgressBar`}
                             <button
                               onClick={() =>
                                 copyToClipboard(
-                                  `<!-- Gradient heading -->
-<h1 className="av-heading-gradient from-purple-400 to-pink-600">
-  Gradient Heading
-</h1>
+                                  `import React from "react";
 
-<!-- Shadow heading -->
-<h2 className="av-heading-shadow">
-  Shadow Heading
-</h2>
+const TypographyShowcase = () => {
+  return (
+    <div className="neo-typography p-10 bg-gray-100 min-h-screen space-y-10">
+      
+      {/* Display Heading */}
+      <h1 className="display-heading text-5xl">
+        Welcome to <span className="accent-text">Neo Design</span>
+      </h1>
+      
+      {/* Gradient Heading */}
+      <h2 className="gradient-heading text-4xl">
+        Stylish Gradient Heading
+      </h2>
+      
+      {/* Split Heading */}
+      <h3 className="split-heading text-3xl">
+        <span>Modern</span> <span>Look</span>
+      </h3>
+      
+      {/* Outline Heading */}
+      <h4 className="outline-heading text-6xl">
+        Outlined
+      </h4>
+      
+      {/* Lead Paragraph */}
+      <p className="lead-text">
+        This is a lead paragraph used to emphasize introductory content and set the tone for the rest of the page.
+      </p>
+      
+      {/* Stylish Quote */}
+      <blockquote className="stylish-quote">
+        "Design is not just what it looks like and feels like. Design is how it works." – Steve Jobs
+      </blockquote>
+      
+      {/* Caption Text */}
+      <p className="caption-text">
+        *This is a caption below an image or diagram.*
+      </p>
+      
+      {/* Code Text */}
+      <p>
+        To install dependencies, run: <code className="code-text">npm install</code>
+      </p>
+      
+      {/* Highlighted Text */}
+      <p>
+        Remember to <span className="highlight-text">save your work</span> frequently.
+      </p>
+      
+      {/* Accent Text */}
+      <p>
+        This sentence includes an <span className="accent-text">accentuated</span> word.
+      </p>
+      
+      {/* Elegant List */}
+      <ul className="elegant-list space-y-2">
+        <li className="pl-2">Custom font integration</li>
+        <li className="pl-2">Flexible utility classes</li>
+        <li className="pl-2">Beautiful design tokens</li>
+      </ul>
+      
+      {/* Card Text */}
+      <div className="card-text">
+        <h2 className="display-heading text-3xl">Inside a Card</h2>
+        <p className="lead-text">
+          This card uses the custom <code className="code-text">.card-text</code> class to style its content with padding, border, and shadow.
+        </p>
+      </div>
+    </div>
+  );
+};
 
-<!-- Underlined heading -->
-<h3 className="av-heading-underline">
-  Underlined Heading
-</h3>
-
-<!-- Animated heading -->
-<h2 className="av-heading-animated">
-  Animated Heading
-</h2>`,
+export default TypographyShowcase;`,
                                   "text",
                                 )
                               }
@@ -1241,29 +1972,156 @@ export default ProgressBar`}
                             <div className="mt-3 overflow-x-auto">
                               <pre className="text-gray-300 text-sm">
                                 <code>
-                                  {`<!-- Gradient heading -->
-<h1 className="av-heading-gradient from-purple-400 to-pink-600">
-  Gradient Heading
-</h1>
+                                  {`import React from "react";
 
-<!-- Shadow heading -->
-<h2 className="av-heading-shadow">
-  Shadow Heading
-</h2>
+const TypographyShowcase = () => {
+  return (
+    <div className="neo-typography p-10 bg-gray-100 min-h-screen space-y-10">
+      
+      {/* Display Heading */}
+      <h1 className="display-heading text-5xl">
+        Welcome to <span className="accent-text">Neo Design</span>
+      </h1>
+      
+      {/* Gradient Heading */}
+      <h2 className="gradient-heading text-4xl">
+        Stylish Gradient Heading
+      </h2>
+      
+      {/* Split Heading */}
+      <h3 className="split-heading text-3xl">
+        <span>Modern</span> <span>Look</span>
+      </h3>
+      
+      {/* Outline Heading */}
+      <h4 className="outline-heading text-6xl">
+        Outlined
+      </h4>
+      
+      {/* Lead Paragraph */}
+      <p className="lead-text">
+        This is a lead paragraph used to emphasize introductory content and set the tone for the rest of the page.
+      </p>
+      
+      {/* Stylish Quote */}
+      <blockquote className="stylish-quote">
+        "Design is not just what it looks like and feels like. Design is how it works." – Steve Jobs
+      </blockquote>
+      
+      {/* Caption Text */}
+      <p className="caption-text">
+        *This is a caption below an image or diagram.*
+      </p>
+      
+      {/* Code Text */}
+      <p>
+        To install dependencies, run: <code className="code-text">npm install</code>
+      </p>
+      
+      {/* Highlighted Text */}
+      <p>
+        Remember to <span className="highlight-text">save your work</span> frequently.
+      </p>
+      
+      {/* Accent Text */}
+      <p>
+        This sentence includes an <span className="accent-text">accentuated</span> word.
+      </p>
+      
+      {/* Elegant List */}
+      <ul className="elegant-list space-y-2">
+        <li className="pl-2">Custom font integration</li>
+        <li className="pl-2">Flexible utility classes</li>
+        <li className="pl-2">Beautiful design tokens</li>
+      </ul>
+      
+      {/* Card Text */}
+      <div className="card-text">
+        <h2 className="display-heading text-3xl">Inside a Card</h2>
+        <p className="lead-text">
+          This card uses the custom <code className="code-text">.card-text</code> class to style its content with padding, border, and shadow.
+        </p>
+      </div>
+    </div>
+  );
+};
 
-<!-- Underlined heading -->
-<h3 className="av-heading-underline">
-  Underlined Heading
-</h3>
-
-<!-- Animated heading -->
-<h2 className="av-heading-animated">
-  Animated Heading
-</h2>`}
+export default TypographyShowcase;`}
                                 </code>
                               </pre>
                             </div>
                           )}
+                        </div>
+                        <div className="p-5 bg-gray-800 border-t border-gray-700">
+                          <h4 className="text-white font-semibold mb-3">Typography System Features</h4>
+
+                          <div className="space-y-4">
+                            <div>
+                              <h5 className="text-white font-medium mb-2 text-sm">Font Family Variables</h5>
+                              <p className="text-gray-400 text-sm">
+                                The system uses CSS variables to define font families:
+                              </p>
+                              <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm mt-2">
+                                <li>
+                                  <span className="text-gray-200">--heading-font</span>: "Playfair Display", serif
+                                </li>
+                                <li>
+                                  <span className="text-gray-200">--body-font</span>: "Raleway", sans-serif
+                                </li>
+                                <li>
+                                  <span className="text-gray-200">--mono-font</span>: "JetBrains Mono", monospace
+                                </li>
+                                <li>
+                                  <span className="text-gray-200">--accent-font</span>: "Montserrat", sans-serif
+                                </li>
+                              </ul>
+                            </div>
+
+                            <div>
+                              <h5 className="text-white font-medium mb-2 text-sm">Heading Variants</h5>
+                              <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                                <li>
+                                  <span className="text-gray-200">display-heading</span>: Elegant heading with
+                                  decorative underline
+                                </li>
+                                <li>
+                                  <span className="text-gray-200">gradient-heading</span>: Text with gradient background
+                                </li>
+                                <li>
+                                  <span className="text-gray-200">split-heading</span>: Dual-color heading with styling
+                                </li>
+                                <li>
+                                  <span className="text-gray-200">outline-heading</span>: Outlined text with shadow
+                                  effect
+                                </li>
+                              </ul>
+                            </div>
+
+                            <div>
+                              <h5 className="text-white font-medium mb-2 text-sm">Text Treatments</h5>
+                              <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                                <li>
+                                  <span className="text-gray-200">lead-text</span>: Larger introductory paragraph
+                                </li>
+                                <li>
+                                  <span className="text-gray-200">stylish-quote</span>: Blockquote with border and
+                                  gradient
+                                </li>
+                                <li>
+                                  <span className="text-gray-200">caption-text</span>: Small caption text
+                                </li>
+                                <li>
+                                  <span className="text-gray-200">code-text</span>: Monospace code styling
+                                </li>
+                                <li>
+                                  <span className="text-gray-200">highlight-text</span>: Text with background highlight
+                                </li>
+                                <li>
+                                  <span className="text-gray-200">accent-text</span>: Emphasized text with accent color
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
                         </div>
                       </div>
 
@@ -1274,7 +2132,7 @@ export default ProgressBar`}
                         <div className="p-5 bg-gray-900">
                           <div className="flex justify-center mb-4">
                             <img
-                              src="/placeholder.svg?height=200&width=400"
+                              src="/placeholder.svg?height=200&width=300"
                               alt="Text styles screenshot"
                               className="rounded-md border border-gray-700"
                             />
@@ -1346,6 +2204,70 @@ export default ProgressBar`}
                             </div>
                           )}
                         </div>
+                        <div className="p-5 bg-gray-800 border-t border-gray-700">
+                          <h4 className="text-white font-semibold mb-3">Text Utility Classes</h4>
+
+                          <div className="space-y-4">
+                            <div>
+                              <h5 className="text-white font-medium mb-2 text-sm">Base Classes</h5>
+                              <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                                <li>
+                                  <span className="text-gray-200">av-text</span>: Base text styling with comfortable
+                                  line height
+                                </li>
+                                <li>
+                                  <span className="text-gray-200">av-text-small</span>: Smaller text size
+                                </li>
+                                <li>
+                                  <span className="text-gray-200">av-text-mono</span>: Monospace font family
+                                </li>
+                              </ul>
+                            </div>
+
+                            <div>
+                              <h5 className="text-white font-medium mb-2 text-sm">Weight Modifiers</h5>
+                              <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                                <li>
+                                  <span className="text-gray-200">av-text-light</span>: Lighter font weight
+                                </li>
+                                <li>
+                                  <span className="text-gray-200">av-text-medium</span>: Medium font weight
+                                </li>
+                                <li>
+                                  <span className="text-gray-200">av-text-bold</span>: Bold font weight
+                                </li>
+                              </ul>
+                            </div>
+
+                            <div>
+                              <h5 className="text-white font-medium mb-2 text-sm">Style Modifiers</h5>
+                              <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                                <li>
+                                  <span className="text-gray-200">av-text-italic</span>: Italic text style
+                                </li>
+                                <li>
+                                  <span className="text-gray-200">av-text-wide</span>: Wider letter spacing
+                                </li>
+                                <li>
+                                  <span className="text-gray-200">av-text-code</span>: Code styling with background
+                                </li>
+                              </ul>
+                            </div>
+
+                            <div className="bg-gray-900 rounded-md p-4">
+                              <h5 className="text-white font-medium mb-2 text-sm">Combining Classes</h5>
+                              <p className="text-gray-400 text-sm">
+                                These utility classes can be combined to create various text styles. For example:
+                              </p>
+                              <pre className="text-gray-300 text-sm mt-2 bg-gray-800 p-2 rounded">
+                                <code>className="av-text-small av-text-bold av-text-wide"</code>
+                              </pre>
+                              <p className="text-gray-400 text-sm mt-2">
+                                This would create small, bold text with wider letter spacing.
+                              </p>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </>
@@ -1353,20 +2275,20 @@ export default ProgressBar`}
 
                 {activeSubTab === "grid" && (
                   <>
-                    <h3 className="text-gray-300 text-xl font-semibold mb-3">Grid Layouts</h3>
+                    <h3 className="text-gray-300 text-xl font-semibold mb-3">Custom Animated Components</h3>
                     <p className="text-gray-400 mb-4">
-                      Pre-built grid layouts for common UI patterns and responsive designs.
+                      Pre-built animated components with interactive effects and responsive designs.
                     </p>
 
                     <div className="bg-gray-800 rounded-lg overflow-hidden mb-6">
                       <div className="p-5 border-b border-gray-700">
-                        <h3 className="text-white font-semibold">Custom Animated Components</h3>
+                        <h3 className="text-white font-semibold">Animated Shape Cards</h3>
                       </div>
                       <div className="p-5 bg-gray-900">
                         <div className="flex justify-center mb-4">
                           <img
-                            src="/customlayout/Picture1.png"
-                            alt="Dashboard grid layout screenshot"
+                            src="/placeholder.svg?height=200&width=400"
+                            alt="Animated shape cards screenshot"
                             className="rounded-md border border-gray-700"
                           />
                         </div>
@@ -1600,8 +2522,102 @@ export default function AnimatedShapeCards() {
                           </div>
                         )}
                       </div>
+                      <div className="p-5 bg-gray-800 border-t border-gray-700">
+                        <h4 className="text-white font-semibold mb-3">Animated Shape Cards Features</h4>
+
+                        <div className="space-y-6">
+                          <div>
+                            <h5 className="text-white font-medium mb-2">Card Base Variants</h5>
+                            <p className="text-gray-400 text-sm mb-3">
+                              Each card variant has a matching color theme and consistent hover animations:
+                            </p>
+                            <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                              <li>
+                                <span className="text-gray-200">shape-card-primary</span>: Blue themed card
+                              </li>
+                              <li>
+                                <span className="text-gray-200">shape-card-success</span>: Green themed card
+                              </li>
+                              <li>
+                                <span className="text-gray-200">shape-card-warning</span>: Amber themed card
+                              </li>
+                              <li>
+                                <span className="text-gray-200">shape-card-danger</span>: Red themed card
+                              </li>
+                              <li>
+                                <span className="text-gray-200">shape-card-purple</span>: Purple themed card
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div>
+                            <h5 className="text-white font-medium mb-2">Shape Elements</h5>
+                            <p className="text-gray-400 text-sm mb-3">
+                              Various shape elements that can be placed inside cards:
+                            </p>
+                            <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                              <li>
+                                <span className="text-gray-200">shape-circle</span>: Circular shape with float animation
+                              </li>
+                              <li>
+                                <span className="text-gray-200">shape-triangle</span>: Triangle shape with bounce
+                                animation
+                              </li>
+                              <li>
+                                <span className="text-gray-200">shape-rectangle</span>: Rectangle with rotation
+                                animation
+                              </li>
+                              <li>
+                                <span className="text-gray-200">shape-polygon</span>: Pentagon shape with pulse
+                                animation
+                              </li>
+                              <li>
+                                <span className="text-gray-200">shape-dots</span>: Group of dots with slide-in animation
+                              </li>
+                            </ul>
+                          </div>
+
+                          <div className="bg-gray-900 rounded-md p-4">
+                            <h5 className="text-white font-medium mb-2">Animation Details</h5>
+                            <table className="w-full text-sm">
+                              <tbody>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">float</td>
+                                  <td className="py-2 text-gray-300">Gentle up and down movement (6s)</td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">bounce-gentle</td>
+                                  <td className="py-2 text-gray-300">Subtle bouncing effect (3s)</td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">rotate-slow</td>
+                                  <td className="py-2 text-gray-300">Continuous rotation (8s)</td>
+                                </tr>
+                                <tr className="border-b border-gray-700">
+                                  <td className="py-2 pr-4 text-gray-400">pulse-soft</td>
+                                  <td className="py-2 text-gray-300">Gentle scaling pulse (4s)</td>
+                                </tr>
+                                <tr>
+                                  <td className="py-2 pr-4 text-gray-400">slide-in</td>
+                                  <td className="py-2 text-gray-300">Quick entrance animation (0.5s)</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+
+                          <div>
+                            <h5 className="text-white font-medium mb-2">Implementation Notes</h5>
+                            <ul className="list-disc list-inside text-gray-300 space-y-1 text-sm">
+                              <li>All cards have a subtle float effect on hover</li>
+                              <li>Background shapes are positioned with absolute positioning</li>
+                              <li>Content is kept in z-index above the animated shapes</li>
+                              <li>Animations only trigger on hover for better performance</li>
+                              <li>Each card has pseudo-elements for additional background shapes</li>
+                            </ul>
+                          </div>
+                        </div>
+                      </div>
                     </div>
-                    
                   </>
                 )}
               </section>

@@ -219,28 +219,39 @@ const Home = () => {
           </div>
           <div className="p-4 sm:p-6 bg-black overflow-x-auto">
             <pre className="text-sm text-gray-300">
-              <code>{`import React from 'react';
-import { Button, Card } from 'av-plugin/react';
+              <code>{`import React from 'react'
 
-export default function Example() {
+const App = () => {
   return (
-    <Card className="av-animate-fade-in">
-      <Card.Header>
-        <Card.Title>Welcome to AV Plugin</Card.Title>
-        <Card.Description>
-          Build beautiful interfaces with ease
-        </Card.Description>
-      </Card.Header>
-      <Card.Content>
-        <p>This is an example of our component library in action.</p>
-      </Card.Content>
-      <Card.Footer>
-        <Button variant="primary">Get Started</Button>
-        <Button variant="outline">Learn More</Button>
-      </Card.Footer>
-    </Card>
-  );
-}`}</code>
+    <div>
+    <div className="m-20 space-y-4">
+    <h2 className="text-2xl font-bold">Select the desired Box</h2>
+    <label className="flex items-center gap-2">
+    <input type="checkbox" className="checkbox-primary" />
+    <span>Primary Checkbox</span>
+  </label>
+
+  <label className="flex items-center gap-2">
+    <input type="checkbox" className="checkbox-success" />
+    <span>Success Checkbox</span>
+  </label>
+
+  <label className="flex items-center gap-2">
+    <input type="checkbox" className="checkbox-warning" />
+    <span>Warning Checkbox</span>
+  </label>
+
+  <label className="flex items-center gap-2">
+    <input type="checkbox" className="checkbox-error" />
+    <span>Error Checkbox</span>
+  </label>
+      </div>
+    </div>
+  )
+}
+
+export default App
+`}</code>
             </pre>
           </div>
         </div>

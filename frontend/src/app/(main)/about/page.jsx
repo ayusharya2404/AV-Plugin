@@ -334,16 +334,18 @@ const About = () => {
 npm install av-plugin
 
 // Add to tailwind.config.js
+const plugin = require('tailwindcss/plugin')
+
 module.exports = {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   plugins: [
-    require('av-plugin')({
-      // Your configuration options
-      animations: true,
-      responsiveness: true,
-      darkMode: 'class'
-    })
+    require('av-plugin'),
   ]
-}`}
+}
+`}
             </code>
           </pre>
         </motion.div>
